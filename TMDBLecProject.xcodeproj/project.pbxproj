@@ -13,6 +13,10 @@
 		CFEF30F02899F6C2008511B9 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CFEF30EE2899F6C2008511B9 /* Main.storyboard */; };
 		CFEF30F22899F6C4008511B9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CFEF30F12899F6C4008511B9 /* Assets.xcassets */; };
 		CFEF30F52899F6C4008511B9 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CFEF30F32899F6C4008511B9 /* LaunchScreen.storyboard */; };
+		CFEF30FD2899F7D2008511B9 /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = CFEF30FC2899F7D2008511B9 /* .gitignore */; };
+		CFEF31002899F88D008511B9 /* APIKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFEF30FF2899F88D008511B9 /* APIKey.swift */; };
+		CFEF31022899F9F3008511B9 /* Constant.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFEF31012899F9F3008511B9 /* Constant.swift */; };
+		CFEF31052899FAF9008511B9 /* FontInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFEF31042899FAF9008511B9 /* FontInfo.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +28,10 @@
 		CFEF30F12899F6C4008511B9 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		CFEF30F42899F6C4008511B9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		CFEF30F62899F6C4008511B9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		CFEF30FC2899F7D2008511B9 /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
+		CFEF30FF2899F88D008511B9 /* APIKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIKey.swift; sourceTree = "<group>"; };
+		CFEF31012899F9F3008511B9 /* Constant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constant.swift; sourceTree = "<group>"; };
+		CFEF31042899FAF9008511B9 /* FontInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FontInfo.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -40,6 +48,7 @@
 		CFEF30DC2899F6C2008511B9 = {
 			isa = PBXGroup;
 			children = (
+				CFEF30FC2899F7D2008511B9 /* .gitignore */,
 				CFEF30E72899F6C2008511B9 /* TMDBLecProject */,
 				CFEF30E62899F6C2008511B9 /* Products */,
 			);
@@ -56,6 +65,8 @@
 		CFEF30E72899F6C2008511B9 /* TMDBLecProject */ = {
 			isa = PBXGroup;
 			children = (
+				CFEF31032899FAD3008511B9 /* Resource */,
+				CFEF30FE2899F856008511B9 /* APIKey */,
 				CFEF30E82899F6C2008511B9 /* AppDelegate.swift */,
 				CFEF30EA2899F6C2008511B9 /* SceneDelegate.swift */,
 				CFEF30EC2899F6C2008511B9 /* ViewController.swift */,
@@ -63,8 +74,25 @@
 				CFEF30F12899F6C4008511B9 /* Assets.xcassets */,
 				CFEF30F32899F6C4008511B9 /* LaunchScreen.storyboard */,
 				CFEF30F62899F6C4008511B9 /* Info.plist */,
+				CFEF31012899F9F3008511B9 /* Constant.swift */,
 			);
 			path = TMDBLecProject;
+			sourceTree = "<group>";
+		};
+		CFEF30FE2899F856008511B9 /* APIKey */ = {
+			isa = PBXGroup;
+			children = (
+				CFEF30FF2899F88D008511B9 /* APIKey.swift */,
+			);
+			path = APIKey;
+			sourceTree = "<group>";
+		};
+		CFEF31032899FAD3008511B9 /* Resource */ = {
+			isa = PBXGroup;
+			children = (
+				CFEF31042899FAF9008511B9 /* FontInfo.swift */,
+			);
+			path = Resource;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -125,6 +153,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CFEF30FD2899F7D2008511B9 /* .gitignore in Resources */,
 				CFEF30F52899F6C4008511B9 /* LaunchScreen.storyboard in Resources */,
 				CFEF30F22899F6C4008511B9 /* Assets.xcassets in Resources */,
 				CFEF30F02899F6C2008511B9 /* Main.storyboard in Resources */,
@@ -140,6 +169,9 @@
 			files = (
 				CFEF30ED2899F6C2008511B9 /* ViewController.swift in Sources */,
 				CFEF30E92899F6C2008511B9 /* AppDelegate.swift in Sources */,
+				CFEF31052899FAF9008511B9 /* FontInfo.swift in Sources */,
+				CFEF31022899F9F3008511B9 /* Constant.swift in Sources */,
+				CFEF31002899F88D008511B9 /* APIKey.swift in Sources */,
 				CFEF30EB2899F6C2008511B9 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
