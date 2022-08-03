@@ -13,7 +13,7 @@ class GenreDB {
     
     private init () {}
     
-    var tvGenre: [Int:String] = [:]
+    private var tvGenre: [Int:String] = [:]
     
     func appendGenre(key: Int, value: String) {
         tvGenre[key] = value

@@ -19,8 +19,10 @@ class TrendCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var trendRateLabel: UILabel!
     @IBOutlet weak var trendTitleLabel: UILabel!
     @IBOutlet weak var trendDescriptionLabel: UILabel!
+    @IBOutlet weak var trendRateInfoLabel: UILabel!
     
     @IBOutlet weak var trendDetailButton: UIButton!
+    @IBOutlet weak var lookDetailLabel: UILabel!
     
     @IBOutlet weak var trendContentView: UIView!
     @IBOutlet weak var shadowView: UIView!
@@ -33,7 +35,7 @@ class TrendCollectionViewCell: UICollectionViewCell {
         dateLabel.text = " \(trendData.date) "
         trendGenreLabel.text = trendData.genres.map {
             return "#\(genreDB.searchGenreFromData(key: $0)!)"
-        }.formatted()
+        }.formatted(.list(type: .and, width: .narrow))
         
         guard let url = URL(string: "\(EndPoint.imageURL)\(trendData.imageURLString)") else { return }
         trendMainImageView.kf.setImage(with: url)
@@ -44,18 +46,11 @@ class TrendCollectionViewCell: UICollectionViewCell {
     }
     
     func configureCell() {
-        setCellUI()
-    }
-    
-    func setCellUI() {
         setLayer()
+        setFont()
     }
     
     func setLayer() {
-//        shadowView.clipsToBounds = true
-//        shadowView.backgroundColor = .clear
-//        shadowView.layer.cornerRadius = 8
-//
         trendContentView.clipsToBounds = true
         trendContentView.layer.masksToBounds = false
         trendContentView.layer.borderColor = UIColor.white.cgColor
@@ -71,6 +66,24 @@ class TrendCollectionViewCell: UICollectionViewCell {
         shadowView.backgroundColor = .white
         
         seperatorView.backgroundColor = .black
+    }
+    
+    func setFont() {
+        
+        dateLabel.font = .systemFont(ofSize: 14, weight: .regular)
+        dateLabel.textColor = .gray
+        
+        trendGenreLabel.font = .systemFont(ofSize: 20, weight: .bold)
+        
+        trendTitleLabel.font = .systemFont(ofSize: 21, weight: .semibold)
+        
+        trendDescriptionLabel.font = .systemFont(ofSize: 16, weight: .regular)
+        trendDescriptionLabel.textColor = .darkGray
+        
+        lookDetailLabel.font = .systemFont(ofSize: 14, weight: .regular)
+        
+        trendRateLabel.font = .systemFont(ofSize: 14, weight: .regular)
+        trendRateInfoLabel.font = .systemFont(ofSize: 14, weight: .regular)
     }
     
 }

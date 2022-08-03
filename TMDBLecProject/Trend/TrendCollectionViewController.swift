@@ -85,6 +85,10 @@ class TrendCollectionViewController: UIViewController, UICollectionViewDelegate,
         
         let urlString = "\(EndPoint.trendURL)?api_key=\(APIKey.TMDB_KEY)"
         
+        let formatter = DateFormatter()
+        
+        
+        
         AF.request(urlString).validate().responseJSON { response in
             
             switch response.result {
@@ -98,13 +102,18 @@ class TrendCollectionViewController: UIViewController, UICollectionViewDelegate,
                 
                 trends.forEach { (_ ,json) in
                     let name = json["name"].stringValue
-                    let date = json["first_air_date"].stringValue
+        
+                    formatter.dateFormat = "yyyy-MM-dd"
+                    
+                    let date = formatter.date(from: json["first_air_date"].stringValue)
                     let rate = json["vote_average"].doubleValue
                     let imageURL = json["poster_path"].stringValue
                     let description = json["overview"].stringValue
                     let genres = json["genre_ids"].arrayObject as! [Int]
                     
-                    self.dataArray.append(TrendData(date: date, genres: genres, title: name, imageURLString: imageURL, rate: "\(round(rate * 100) / 100.0)", description: description))
+                    formatter.dateFormat = "dd/MM/yyyy"
+                    
+                    self.dataArray.append(TrendData(date: formatter.string(from: date!), genres: genres, title: name, imageURLString: imageURL, rate: "\(round(rate * 100) / 100.0)", description: description))
                 }
                 
                 self.trendCollectionView.reloadData()

@@ -45,10 +45,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hlr-Sf-lhe">
-                                                    <rect key="frame" x="16" y="26" width="339" height="40"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="height" constant="40" id="7Ys-cJ-sz9"/>
-                                                    </constraints>
+                                                    <rect key="frame" x="16" y="26" width="339" height="20.5"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -103,7 +100,7 @@
                                                                             </constraints>
                                                                         </imageView>
                                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="자세히 보기" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nEg-LR-lUq">
-                                                                            <rect key="frame" x="0.0" y="19.5" width="78" height="20.5"/>
+                                                                            <rect key="frame" x="0.0" y="15.5" width="78" height="20.5"/>
                                                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                             <nil key="textColor"/>
                                                                             <nil key="highlightedColor"/>
@@ -120,7 +117,7 @@
                                                                         <constraint firstItem="1mS-c3-FaW" firstAttribute="top" secondItem="UJQ-l3-uSY" secondAttribute="top" id="3FE-J7-d0Y"/>
                                                                         <constraint firstItem="1mS-c3-FaW" firstAttribute="leading" secondItem="UJQ-l3-uSY" secondAttribute="leading" id="4ip-lQ-U9a"/>
                                                                         <constraint firstAttribute="trailing" secondItem="1mS-c3-FaW" secondAttribute="trailing" id="5w3-Yc-96h"/>
-                                                                        <constraint firstAttribute="bottom" secondItem="nEg-LR-lUq" secondAttribute="bottom" constant="4" id="9JC-fk-ldc"/>
+                                                                        <constraint firstAttribute="bottom" secondItem="nEg-LR-lUq" secondAttribute="bottom" constant="8" id="9JC-fk-ldc"/>
                                                                         <constraint firstItem="nEg-LR-lUq" firstAttribute="leading" secondItem="UJQ-l3-uSY" secondAttribute="leading" id="9gI-pL-Jl4"/>
                                                                         <constraint firstItem="Xdq-Xc-wwo" firstAttribute="height" secondItem="UJQ-l3-uSY" secondAttribute="height" multiplier="0.5" constant="1" id="CNP-9a-bdI"/>
                                                                         <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="44" id="asc-C7-lsK"/>
@@ -141,16 +138,13 @@
                                                                     <rect key="frame" x="20" y="204" width="299" height="87"/>
                                                                     <subviews>
                                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="t3m-Fk-bRw">
-                                                                            <rect key="frame" x="0.0" y="0.0" width="41.5" height="40"/>
-                                                                            <constraints>
-                                                                                <constraint firstAttribute="height" constant="40" id="cfN-df-1j1"/>
-                                                                            </constraints>
+                                                                            <rect key="frame" x="0.0" y="16" width="41.5" height="20.5"/>
                                                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                             <nil key="textColor"/>
                                                                             <nil key="highlightedColor"/>
                                                                         </label>
                                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oxa-o1-F6t">
-                                                                            <rect key="frame" x="0.0" y="44" width="299" height="20.5"/>
+                                                                            <rect key="frame" x="0.0" y="40.5" width="299" height="20.5"/>
                                                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                             <nil key="textColor"/>
                                                                             <nil key="highlightedColor"/>
@@ -158,7 +152,7 @@
                                                                     </subviews>
                                                                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                                     <constraints>
-                                                                        <constraint firstItem="t3m-Fk-bRw" firstAttribute="top" secondItem="X8g-4q-PTv" secondAttribute="top" id="4pi-Um-zfs"/>
+                                                                        <constraint firstItem="t3m-Fk-bRw" firstAttribute="top" secondItem="X8g-4q-PTv" secondAttribute="top" constant="16" id="4pi-Um-zfs"/>
                                                                         <constraint firstItem="oxa-o1-F6t" firstAttribute="top" secondItem="t3m-Fk-bRw" secondAttribute="bottom" constant="4" id="PeO-0F-4Wm"/>
                                                                         <constraint firstAttribute="trailing" secondItem="oxa-o1-F6t" secondAttribute="trailing" id="SBv-QC-uam"/>
                                                                         <constraint firstItem="oxa-o1-F6t" firstAttribute="leading" secondItem="t3m-Fk-bRw" secondAttribute="leading" id="T91-ku-uOK"/>
@@ -216,6 +210,7 @@
                                         <connections>
                                             <outlet property="DetailView" destination="UJQ-l3-uSY" id="uoN-z5-DaO"/>
                                             <outlet property="dateLabel" destination="xwJ-Nh-LVD" id="tEu-Id-rbd"/>
+                                            <outlet property="lookDetailLabel" destination="nEg-LR-lUq" id="GAx-dn-ixh"/>
                                             <outlet property="seperatorView" destination="tVo-Nb-ZJZ" id="2Ly-jo-F6p"/>
                                             <outlet property="shadowView" destination="HZ6-Wx-so4" id="HU6-9Q-WYf"/>
                                             <outlet property="trendContentView" destination="CID-WE-6xf" id="bQu-jv-bOq"/>
@@ -223,6 +218,7 @@
                                             <outlet property="trendDetailButton" destination="1mS-c3-FaW" id="aMe-UN-9A0"/>
                                             <outlet property="trendGenreLabel" destination="hlr-Sf-lhe" id="u1D-Cu-136"/>
                                             <outlet property="trendMainImageView" destination="PHk-VF-nRe" id="iek-8R-q6p"/>
+                                            <outlet property="trendRateInfoLabel" destination="G5w-pL-Fl4" id="6y3-A2-Hhe"/>
                                             <outlet property="trendRateLabel" destination="wW4-IA-8n7" id="LVi-f5-ngE"/>
                                             <outlet property="trendTitleLabel" destination="t3m-Fk-bRw" id="Uec-0z-hMU"/>
                                         </connections>

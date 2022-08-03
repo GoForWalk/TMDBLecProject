@@ -16,7 +16,6 @@
 		CF8FE174289A6EA4005C8371 /* TrendDB.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF8FE173289A6EA4005C8371 /* TrendDB.swift */; };
 		CFEF30E92899F6C2008511B9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFEF30E82899F6C2008511B9 /* AppDelegate.swift */; };
 		CFEF30EB2899F6C2008511B9 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFEF30EA2899F6C2008511B9 /* SceneDelegate.swift */; };
-		CFEF30ED2899F6C2008511B9 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFEF30EC2899F6C2008511B9 /* ViewController.swift */; };
 		CFEF30F02899F6C2008511B9 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CFEF30EE2899F6C2008511B9 /* Main.storyboard */; };
 		CFEF30F22899F6C4008511B9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CFEF30F12899F6C4008511B9 /* Assets.xcassets */; };
 		CFEF30F52899F6C4008511B9 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CFEF30F32899F6C4008511B9 /* LaunchScreen.storyboard */; };
@@ -33,7 +32,6 @@
 		CFEF30E52899F6C2008511B9 /* TMDBLecProject.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TMDBLecProject.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CFEF30E82899F6C2008511B9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CFEF30EA2899F6C2008511B9 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		CFEF30EC2899F6C2008511B9 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		CFEF30EF2899F6C2008511B9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		CFEF30F12899F6C4008511B9 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		CFEF30F42899F6C4008511B9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -105,12 +103,11 @@
 				CF8FE175289A6EAB005C8371 /* DataBase */,
 				CF8FE176289A7163005C8371 /* Protocol */,
 				CFEF31032899FAD3008511B9 /* Resource */,
+				CF8FE165289A4F6B005C8371 /* Trend */,
 				CFEF30FE2899F856008511B9 /* APIKey */,
 				CFEF30E82899F6C2008511B9 /* AppDelegate.swift */,
 				CFEF30EA2899F6C2008511B9 /* SceneDelegate.swift */,
-				CFEF30EC2899F6C2008511B9 /* ViewController.swift */,
 				CFEF30EE2899F6C2008511B9 /* Main.storyboard */,
-				CF8FE165289A4F6B005C8371 /* Trend */,
 				CFEF30F12899F6C4008511B9 /* Assets.xcassets */,
 				CFEF30F32899F6C4008511B9 /* LaunchScreen.storyboard */,
 				CFEF30F62899F6C4008511B9 /* Info.plist */,
@@ -216,7 +213,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CFEF30ED2899F6C2008511B9 /* ViewController.swift in Sources */,
 				CFEF30E92899F6C2008511B9 /* AppDelegate.swift in Sources */,
 				CFEF31052899FAF9008511B9 /* FontInfo.swift in Sources */,
 				CF8FE164289A4F60005C8371 /* TrendCollectionViewController.swift in Sources */,
