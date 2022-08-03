@@ -7,14 +7,48 @@
 
 import UIKit
 
+import Alamofire
+import SwiftyJSON
+
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
-
+    let genreDB = GenreDB.shared
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        fetchGenre()
         return true
+    }
+    
+    func fetchGenre() {
+        
+        let urlString = "\(EndPoint.gerneURL)?api_key=\(APIKey.TMDB_KEY)"
+        
+        AF.request(urlString).validate().responseJSON { response in
+            
+            switch response.result {
+            case .success(let result):
+                let json = JSON(result)
+                
+                let genres = json["genres"]
+                
+                genres.forEach { (_ , json) in
+                    let key = json["id"].intValue
+                    let value = json["name"].stringValue
+                    
+                    self.genreDB.appendGenre(key: key, value: value)
+                }
+                
+                print("fetch Done: genreData")
+                
+            case .failure(let error):
+                print(error)
+            }
+            
+            
+        }
+        
     }
 
     // MARK: UISceneSession Lifecycle
