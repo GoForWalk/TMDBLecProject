@@ -14,7 +14,7 @@ import SwiftyJSON
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     let genreDB = GenreDB.shared
-
+    
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         fetchGenre()
@@ -22,15 +22,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     func fetchGenre() {
-        
+        print("start Genre")
         let urlString = "\(EndPoint.gerneURL)?api_key=\(APIKey.TMDB_KEY)"
         
-        AF.request(urlString).validate().responseJSON { response in
+        AF.request(urlString, method: .get).validate().responseJSON { response in
             
             switch response.result {
             case .success(let result):
                 let json = JSON(result)
                 
+                print(json)
                 let genres = json["genres"]
                 
                 genres.forEach { (_ , json) in
@@ -40,15 +41,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                     self.genreDB.appendGenre(key: key, value: value)
                 }
                 
+                self.genreDB.setGenreToUserDefaults()
                 print("fetch Done: genreData")
                 
             case .failure(let error):
                 print(error)
             }
-            
-            
         }
-        
     }
 
     // MARK: UISceneSession Lifecycle

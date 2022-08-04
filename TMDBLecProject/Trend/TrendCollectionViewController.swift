@@ -19,14 +19,19 @@ struct TrendData {
     var imageURLString: String
     var rate: String
     var description: String
+    var tvID: Int
+    var wildImageURLString: String
     
 }
 
-class TrendCollectionViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource {
+class TrendCollectionViewController: UIViewController {
     
     @IBOutlet weak var trendCollectionView: UICollectionView!
     
     let genreDB = GenreDB.shared
+    
+    var startPage = 1
+    var totalCell = 0
     
     var dataArray: [TrendData] = []
     
@@ -35,15 +40,65 @@ class TrendCollectionViewController: UIViewController, UICollectionViewDelegate,
         trendCollectionView.delegate = self
         trendCollectionView.dataSource = self
         trendCollectionView.collectionViewLayout = setCellSize()
+        trendCollectionView.prefetchDataSource = self
         
         setUI()
-        fetchData()
+        fetchData(startPage: startPage)
     }
     
     func setUI() {
-        
         trendCollectionView.backgroundColor = .yellow.withAlphaComponent(0)
     }
+    
+    func fetchData(startPage: Int) {
+        
+        let urlString = "\(EndPoint.trendURL)?api_key=\(APIKey.TMDB_KEY)"
+        
+        let params: Parameters = ["api_key":"\(APIKey.TMDB_KEY)", "page": startPage]
+        
+        let formatter = DateFormatter()
+        
+        AF.request(urlString, method: .get, parameters: params ).validate().responseJSON { response in
+            
+            switch response.result {
+            case .success(let result):
+                let json = JSON(result)
+                print(json)
+                
+                let trends = json["results"]
+                self.totalCell = json["total_results"].intValue
+                print(trends.count)
+                
+                trends.forEach { (_ ,json) in
+                    let name = json["name"].stringValue
+                    
+                    formatter.dateFormat = "yyyy-MM-dd"
+                    
+                    let date = formatter.date(from: json["first_air_date"].stringValue)
+                    let rate = json["vote_average"].doubleValue
+                    let imageURL = json["poster_path"].stringValue
+                    let description = json["overview"].stringValue
+                    let genres = json["genre_ids"].arrayObject as! [Int]
+                    let tvid = json["id"].intValue
+                    let wildImageURL = json["backdrop_path"].stringValue
+                    
+                    formatter.dateFormat = "dd/MM/yyyy"
+                    
+                    self.dataArray.append(TrendData(date: formatter.string(from: date!), genres: genres, title: name, imageURLString: imageURL, rate: "\(round(rate * 100) / 100.0)", description: description, tvID: tvid, wildImageURLString: wildImageURL))
+                }
+                
+                self.trendCollectionView.reloadData()
+                
+            case .failure(let error):
+                print("error: \(error)")
+            }
+        }
+    }
+    
+}
+
+// MARK: UICollectionViewDelegate, UICollectionViewDataSource
+extension TrendCollectionViewController: UICollectionViewDelegate, UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return dataArray.count
@@ -52,7 +107,6 @@ class TrendCollectionViewController: UIViewController, UICollectionViewDelegate,
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: TrendCollectionViewCell.identifier, for: indexPath) as? TrendCollectionViewCell else { return UICollectionViewCell() }
-        
         
         cell.configureCell()
         cell.setData(trendData: dataArray[indexPath.row])
@@ -64,10 +118,6 @@ class TrendCollectionViewController: UIViewController, UICollectionViewDelegate,
         let layout = UICollectionViewFlowLayout()
         
         let spacing: CGFloat = 16
-        let numOfCell: CGFloat = 1
-        let numOfSpace: CGFloat = numOfCell + 1
-        
-//        let width = (UIScreen.main.bounds.width - (spacing * numOfSpace)) / numOfCell
         let width = UIScreen.main.bounds.width
         
         layout.minimumLineSpacing = 100
@@ -75,53 +125,30 @@ class TrendCollectionViewController: UIViewController, UICollectionViewDelegate,
         layout.itemSize = CGSize(width: width, height: width * 1.15)
         layout.sectionInset = UIEdgeInsets(top: 50, left: 0, bottom: spacing, right: 0)
         
-        // viewDidLoad 에 추가 코드
-        // collectionView.collectionViewLayout = layout
         return layout
     }
 
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        
+        guard let vc = self.storyboard?.instantiateViewController(withIdentifier: TVDetailViewController.identifier) as? TVDetailViewController else { return }
+        vc.trendData = dataArray[indexPath.item]
+        
+        navigationController?.pushViewController(vc, animated: true)
+    }
     
-    func fetchData() {
+}
+// MARK: UICollectionViewDataSourcePrefetching / Pagenation
+extension TrendCollectionViewController: UICollectionViewDataSourcePrefetching {
+    
+    func collectionView(_ collectionView: UICollectionView, prefetchItemsAt indexPaths: [IndexPath]) {
         
-        let urlString = "\(EndPoint.trendURL)?api_key=\(APIKey.TMDB_KEY)"
-        
-        let formatter = DateFormatter()
-        
-        
-        
-        AF.request(urlString).validate().responseJSON { response in
-            
-            switch response.result {
-            case .success(let result):
-                let json = JSON(result)
-                print(json)
+        for indexPath in indexPaths {
+            if dataArray.count - 1 == indexPath.item, dataArray.count < totalCell  {
                 
-                let trends = json["results"]
+                startPage += 1
+                fetchData(startPage: startPage)
                 
-                print(trends.count)
-                
-                trends.forEach { (_ ,json) in
-                    let name = json["name"].stringValue
-        
-                    formatter.dateFormat = "yyyy-MM-dd"
-                    
-                    let date = formatter.date(from: json["first_air_date"].stringValue)
-                    let rate = json["vote_average"].doubleValue
-                    let imageURL = json["poster_path"].stringValue
-                    let description = json["overview"].stringValue
-                    let genres = json["genre_ids"].arrayObject as! [Int]
-                    
-                    formatter.dateFormat = "dd/MM/yyyy"
-                    
-                    self.dataArray.append(TrendData(date: formatter.string(from: date!), genres: genres, title: name, imageURLString: imageURL, rate: "\(round(rate * 100) / 100.0)", description: description))
-                }
-                
-                self.trendCollectionView.reloadData()
-                
-            case .failure(let error):
-                print("error: \(error)")
             }
         }
     }
-    
 }

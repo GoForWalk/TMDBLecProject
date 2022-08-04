@@ -33,11 +33,11 @@ class TrendCollectionViewCell: UICollectionViewCell {
     func setData(trendData: TrendData) {
         
         dateLabel.text = " \(trendData.date) "
-        trendGenreLabel.text = trendData.genres.map {
+        trendGenreLabel.text = trendData.genres.map {    
             return "#\(genreDB.searchGenreFromData(key: $0)!)"
         }.formatted(.list(type: .and, width: .narrow))
         
-        guard let url = URL(string: "\(EndPoint.imageURL)\(trendData.imageURLString)") else { return }
+        guard let url = URL(string: "\(EndPoint.imageURL)\(trendData.wildImageURLString)") else { return }
         trendMainImageView.kf.setImage(with: url)
         
         trendRateLabel.text = " \(trendData.rate) "

@@ -6,18 +6,50 @@
 //
 
 import UIKit
+//import Alamofire
+//import SwiftyJSON
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     var window: UIWindow?
 
+//    let genreDB = GenreDB.shared
 
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         // Use this method to optionally configure and attach the UIWindow `window` to the provided UIWindowScene `scene`.
         // If using a storyboard, the `window` property will automatically be initialized and attached to the scene.
         // This delegate does not imply the connecting scene or session are new (see `application:configurationForConnectingSceneSession` instead).
+//        fetchGenre()
         guard let _ = (scene as? UIWindowScene) else { return }
     }
+    
+//    func fetchGenre() {
+//
+//        let urlString = "\(EndPoint.gerneURL)?api_key=\(APIKey.TMDB_KEY)"
+//
+//        AF.request(urlString).validate().responseJSON { response in
+//
+//            switch response.result {
+//            case .success(let result):
+//                let json = JSON(result)
+//
+//                let genres = json["genres"]
+//
+//                genres.forEach { (_ , json) in
+//                    let key = json["id"].intValue
+//                    let value = json["name"].stringValue
+//
+//                    self.genreDB.appendGenre(key: key, value: value)
+//                }
+//                print("fetch Done: genreData")
+//
+//            case .failure(let error):
+//                print(error)
+//            }
+//        }
+//
+//    }
+
 
     func sceneDidDisconnect(_ scene: UIScene) {
         // Called as the scene is being released by the system.

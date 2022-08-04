@@ -14,17 +14,14 @@ protocol ReusableProtocol {
     
 }
 
-extension UIViewController: ReusableProtocol {
-    
+extension ReusableProtocol {
     static var identifier: String {
         return String(describing: self)
     }
-    
 }
 
-extension UICollectionViewCell: ReusableProtocol {
-    
-    static var identifier: String {
-        return String(describing: self)
-    }
-}
+extension UIViewController: ReusableProtocol { }
+
+extension UICollectionViewCell: ReusableProtocol { }
+
+extension UITableViewCell: ReusableProtocol { }

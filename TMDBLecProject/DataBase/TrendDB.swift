@@ -13,15 +13,23 @@ class GenreDB {
     
     private init () {}
     
-    private var tvGenre: [Int:String] = [:]
+    private var tvGenre: [String:String] = [:]
     
     func appendGenre(key: Int, value: String) {
-        tvGenre[key] = value
+        tvGenre["\(key)"] = value
     }
         
     func searchGenreFromData(key: Int) -> String? {
-        return tvGenre[key]
+        let userdic = getGenreFromUserDefaults()
+        return userdic["\(key)"]
     }
     
+    func setGenreToUserDefaults() {
+        UserDefaults.standard.set(tvGenre, forKey: "tvGenre")
+    }
+    
+    func getGenreFromUserDefaults() -> [String : String]{
+        UserDefaults.standard.dictionary(forKey: "tvGenre") as! [String: String]
+    }
     
 }
