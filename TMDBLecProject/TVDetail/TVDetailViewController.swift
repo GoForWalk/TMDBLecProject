@@ -122,6 +122,7 @@ extension TVDetailViewController: UITableViewDelegate, UITableViewDataSource {
             guard let cell = tableView.dequeueReusableCell(withIdentifier: OverviewTableViewCell.identifier, for: indexPath) as? OverviewTableViewCell else { return UITableViewCell() }
             
             cell.setData(str: trendData!.description)
+            flipOverviewSection(isOverviewSectionTapped: isOverviewSectionTapped, indexPath: indexPath)
             
             return cell
             
