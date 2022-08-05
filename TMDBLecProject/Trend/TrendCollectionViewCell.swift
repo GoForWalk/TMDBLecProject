@@ -20,7 +20,7 @@ class TrendCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var trendTitleLabel: UILabel!
     @IBOutlet weak var trendDescriptionLabel: UILabel!
     @IBOutlet weak var trendRateInfoLabel: UILabel!
-    
+        
     @IBOutlet weak var trendDetailButton: UIButton!
     @IBOutlet weak var lookDetailLabel: UILabel!
     
@@ -69,7 +69,6 @@ class TrendCollectionViewCell: UICollectionViewCell {
     }
     
     func setFont() {
-        
         dateLabel.font = .systemFont(ofSize: 14, weight: .regular)
         dateLabel.textColor = .gray
         
@@ -85,5 +84,4 @@ class TrendCollectionViewCell: UICollectionViewCell {
         trendRateLabel.font = .systemFont(ofSize: 14, weight: .regular)
         trendRateInfoLabel.font = .systemFont(ofSize: 14, weight: .regular)
     }
-    
 }

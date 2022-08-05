@@ -21,6 +21,7 @@ struct TrendData {
     var description: String
     var tvID: Int
     var wildImageURLString: String
+    var isCliped: Bool = false
     
 }
 
@@ -29,6 +30,7 @@ class TrendCollectionViewController: UIViewController {
     @IBOutlet weak var trendCollectionView: UICollectionView!
     
     let genreDB = GenreDB.shared
+    let trendAPIManager = TMDBAPIManager.shared
     
     var startPage = 1
     var totalCell = 0
@@ -48,52 +50,47 @@ class TrendCollectionViewController: UIViewController {
     
     func setUI() {
         trendCollectionView.backgroundColor = .yellow.withAlphaComponent(0)
+        setNav()
+    }
+    
+    func setNav() {
+        navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "magnifyingglass"), style: .plain, target: self, action: #selector(navRightButtonTapped))
+        navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "list.triangle"), style: .plain, target: self, action: #selector(navLeftButtonTapped))
+        
+        //MARK: UISearchContoller 적용 코드
+        let searchController = UISearchController(searchResultsController: nil)
+        
+        searchController.searchBar.delegate = self
+        
+        self.navigationItem.searchController = searchController
+        
+    }
+    
+    @objc
+    func navRightButtonTapped() {
+        
+    }
+    
+    @objc
+    func navLeftButtonTapped() {
+        
     }
     
     func fetchData(startPage: Int) {
-        
-        let urlString = "\(EndPoint.trendURL)?api_key=\(APIKey.TMDB_KEY)"
-        
-        let params: Parameters = ["api_key":"\(APIKey.TMDB_KEY)", "page": startPage]
-        
-        let formatter = DateFormatter()
-        
-        AF.request(urlString, method: .get, parameters: params ).validate().responseJSON { response in
+        trendAPIManager.fetchTrendAPI(startPage: startPage) { totalCell, newDataArray in
+            self.totalCell = totalCell
+            self.dataArray.append(contentsOf: newDataArray)
             
-            switch response.result {
-            case .success(let result):
-                let json = JSON(result)
-                print(json)
-                
-                let trends = json["results"]
-                self.totalCell = json["total_results"].intValue
-                print(trends.count)
-                
-                trends.forEach { (_ ,json) in
-                    let name = json["name"].stringValue
-                    
-                    formatter.dateFormat = "yyyy-MM-dd"
-                    
-                    let date = formatter.date(from: json["first_air_date"].stringValue)
-                    let rate = json["vote_average"].doubleValue
-                    let imageURL = json["poster_path"].stringValue
-                    let description = json["overview"].stringValue
-                    let genres = json["genre_ids"].arrayObject as! [Int]
-                    let tvid = json["id"].intValue
-                    let wildImageURL = json["backdrop_path"].stringValue
-                    
-                    formatter.dateFormat = "dd/MM/yyyy"
-                    
-                    self.dataArray.append(TrendData(date: formatter.string(from: date!), genres: genres, title: name, imageURLString: imageURL, rate: "\(round(rate * 100) / 100.0)", description: description, tvID: tvid, wildImageURLString: wildImageURL))
-                }
-                
+            DispatchQueue.main.async {
                 self.trendCollectionView.reloadData()
-                
-            case .failure(let error):
-                print("error: \(error)")
             }
         }
     }
+    
+}
+
+// MARK: UISearchBarDelegate
+extension TrendCollectionViewController: UISearchBarDelegate {
     
 }
 

@@ -37,10 +37,9 @@ class CastingTableViewCell: UITableViewCell {
         if actor.actorImageURLString == nil {
             urlstr = "https://f4.bcbits.com/img/a4042326307_10.jpg"
         } else {
-            
+            urlstr = "\(EndPoint.imageURL)\(actor.actorImageURLString ?? "")"
+
         }
-        
-         urlstr = "\(EndPoint.imageURL)\(actor.actorImageURLString!)"
         
         guard let url = URL(string: urlstr) else { return }
         

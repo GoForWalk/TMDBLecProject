@@ -12,9 +12,7 @@ class OverviewTableViewCell: UITableViewCell {
     @IBOutlet weak var overviewLabel: UILabel!
     
     func setData(str: String) {
-        
         overviewLabel.text = str
-        
     }
     
 }

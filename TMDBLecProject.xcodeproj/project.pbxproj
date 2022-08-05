@@ -21,6 +21,8 @@
 		CF8FE16F289A6088005C8371 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = CF8FE16E289A6088005C8371 /* Alamofire */; };
 		CF8FE172289A60A5005C8371 /* SwiftyJSON in Frameworks */ = {isa = PBXBuildFile; productRef = CF8FE171289A60A5005C8371 /* SwiftyJSON */; };
 		CF8FE174289A6EA4005C8371 /* TrendDB.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF8FE173289A6EA4005C8371 /* TrendDB.swift */; };
+		CFC0CA9B289CF08300365340 /* TMDBAPIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFC0CA9A289CF08300365340 /* TMDBAPIManager.swift */; };
+		CFC0CA9D289CF0B200365340 /* APIProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFC0CA9C289CF0B200365340 /* APIProtocol.swift */; };
 		CFEF30E92899F6C2008511B9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFEF30E82899F6C2008511B9 /* AppDelegate.swift */; };
 		CFEF30EB2899F6C2008511B9 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFEF30EA2899F6C2008511B9 /* SceneDelegate.swift */; };
 		CFEF30F02899F6C2008511B9 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CFEF30EE2899F6C2008511B9 /* Main.storyboard */; };
@@ -42,6 +44,8 @@
 		CF8FE166289A4F8C005C8371 /* TrendCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrendCollectionViewCell.swift; sourceTree = "<group>"; };
 		CF8FE168289A4FE9005C8371 /* ReusableProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReusableProtocol.swift; sourceTree = "<group>"; };
 		CF8FE173289A6EA4005C8371 /* TrendDB.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrendDB.swift; sourceTree = "<group>"; };
+		CFC0CA9A289CF08300365340 /* TMDBAPIManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TMDBAPIManager.swift; sourceTree = "<group>"; };
+		CFC0CA9C289CF0B200365340 /* APIProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIProtocol.swift; sourceTree = "<group>"; };
 		CFEF30E52899F6C2008511B9 /* TMDBLecProject.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TMDBLecProject.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CFEF30E82899F6C2008511B9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CFEF30EA2899F6C2008511B9 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -100,8 +104,17 @@
 			isa = PBXGroup;
 			children = (
 				CF8FE168289A4FE9005C8371 /* ReusableProtocol.swift */,
+				CFC0CA9C289CF0B200365340 /* APIProtocol.swift */,
 			);
 			path = Protocol;
+			sourceTree = "<group>";
+		};
+		CFC0CA99289CF06600365340 /* APIManager */ = {
+			isa = PBXGroup;
+			children = (
+				CFC0CA9A289CF08300365340 /* TMDBAPIManager.swift */,
+			);
+			path = APIManager;
 			sourceTree = "<group>";
 		};
 		CFEF30DC2899F6C2008511B9 = {
@@ -124,6 +137,7 @@
 		CFEF30E72899F6C2008511B9 /* TMDBLecProject */ = {
 			isa = PBXGroup;
 			children = (
+				CFC0CA99289CF06600365340 /* APIManager */,
 				CF8FE175289A6EAB005C8371 /* DataBase */,
 				CF8FE176289A7163005C8371 /* Protocol */,
 				CFEF31032899FAD3008511B9 /* Resource */,
@@ -244,6 +258,8 @@
 			files = (
 				CF423A00289BAA350065CD5E /* OverviewTableViewCell.swift in Sources */,
 				CFEF30E92899F6C2008511B9 /* AppDelegate.swift in Sources */,
+				CFC0CA9B289CF08300365340 /* TMDBAPIManager.swift in Sources */,
+				CFC0CA9D289CF0B200365340 /* APIProtocol.swift in Sources */,
 				CF4239F6289B8C400065CD5E /* CastingTableViewCell.swift in Sources */,
 				CF8FE164289A4F60005C8371 /* TrendCollectionViewController.swift in Sources */,
 				CF8FE167289A4F8C005C8371 /* TrendCollectionViewCell.swift in Sources */,

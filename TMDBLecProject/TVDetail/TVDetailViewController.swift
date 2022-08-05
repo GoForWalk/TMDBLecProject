@@ -25,7 +25,9 @@ class TVDetailViewController: UIViewController {
     }
     
     var trendData: TrendData?
-
+    let tmdbAPIManager = TMDBAPIManager.shared
+    var isOverviewSectionTapped: Bool = false
+    
     var actorArray: [ActorInfo] = []
     
     @IBOutlet weak var wildImageView: UIImageView!
@@ -73,38 +75,15 @@ extension TVDetailViewController {
     }
     
     func fetchTVData() {
-        
-        let url = EndPoint.creditURL(tvID: trendData!.tvID)
-        
-        let quaryString: Parameters = ["api_key": APIKey.TMDB_KEY]
-        
-        AF.request(url, method: .get, parameters: quaryString).validate().responseData { response in
+        tmdbAPIManager.fetchCastAPI(trendData: trendData) { actorInfo in
+            self.actorArray.append(contentsOf: actorInfo)
             
-            switch response.result {
-            case .success(let result):
-                let json = JSON(result)
-                
-                let tempData = json["cast"]
-                
-                tempData.forEach { (_ , json) in
-                    
-                    let actorName = json["original_name"].stringValue
-                    let characterName = json["character"].stringValue
-                    let actorImageURLString = json["profile_path"].string
-                
-                    self.actorArray.append(ActorInfo(actorName: actorName, actorImageURLString: actorImageURLString, characterName: characterName))
-                }
-                
-                
+            DispatchQueue.main.async {
                 self.tableView.reloadSections(IndexSet(integer: TableSection.cast.rawValue), with: .none)
-                
-            case .failure(let error):
-                print(error)
             }
         }
-        
-        
     }
+    
 }
 
 // MARK: UITableViewDelegate, UITableViewDataSource
@@ -126,7 +105,6 @@ extension TVDetailViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-
         switch section {
         case TableSection.overview.rawValue:
             return 1
@@ -134,7 +112,6 @@ extension TVDetailViewController: UITableViewDelegate, UITableViewDataSource {
             return actorArray.count
         default: return 0
         }
-
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -162,4 +139,43 @@ extension TVDetailViewController: UITableViewDelegate, UITableViewDataSource {
         
     }
     
+    //automaticdemension
+    // layout
+    // numberOfLines
+
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+            
+        if indexPath.section == TableSection.overview.rawValue {
+            
+            flipOverviewSection(isOverviewSectionTapped: isOverviewSectionTapped, indexPath: indexPath)
+        }
+        
+    }
+    
+    func flipOverviewSection(isOverviewSectionTapped: Bool, indexPath: IndexPath) {
+        
+        switch isOverviewSectionTapped {
+        case true:
+            print("true")
+            tableView.rowHeight = 120
+            
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: OverviewTableViewCell.identifier, for: indexPath) as? OverviewTableViewCell else { return }
+
+            
+            cell.overviewLabel.numberOfLines = 2
+            tableView.reloadRows(at: [IndexPath(row: 0, section: 0)], with: .fade)
+            self.isOverviewSectionTapped = false
+        
+        case false:
+            print("false")
+            tableView.rowHeight = UITableView.automaticDimension
+
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: OverviewTableViewCell.identifier, for: indexPath) as? OverviewTableViewCell else { return }
+
+            cell.overviewLabel.numberOfLines = 0
+            tableView.reloadRows(at: [IndexPath(row: 0, section: 0)], with: .fade)
+            self.isOverviewSectionTapped = true
+        }
+        
+    }
 }
