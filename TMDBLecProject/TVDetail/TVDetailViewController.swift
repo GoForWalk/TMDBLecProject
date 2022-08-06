@@ -18,7 +18,7 @@ struct ActorInfo {
     var characterName: String
 }
 
-class TVDetailViewController: UIViewController {
+final class TVDetailViewController: OrientationPortraitLockedViewController {
 
     enum TableSection: Int, CaseIterable {
         case overview, cast
@@ -51,7 +51,7 @@ class TVDetailViewController: UIViewController {
 // MARK: UISet, FetchData
 extension TVDetailViewController {
 
-    func adoptProtocol() {
+    private func adoptProtocol() {
         tableView.delegate = self
         tableView.dataSource = self
         
@@ -59,7 +59,7 @@ extension TVDetailViewController {
         tableView.register(UINib(nibName: OverviewTableViewCell.identifier, bundle: nil), forCellReuseIdentifier: OverviewTableViewCell.identifier)
     }
 
-    func setUI() {
+    private func setUI() {
         guard let url = URL(string: "\(EndPoint.imageURL)\(trendData!.wildImageURLString)") else { return }
          wildImageView.kf.setImage(with: url)
   
@@ -74,12 +74,12 @@ extension TVDetailViewController {
 
     }
         
-    func fetchTVData() {
+    private func fetchTVData() {
         tmdbAPIManager.fetchCastAPI(trendData: trendData) { actorInfo in
             self.actorArray.append(contentsOf: actorInfo)
             
             DispatchQueue.main.async {
-                self.tableView.reloadSections(IndexSet(integer: TableSection.cast.rawValue), with: .none)
+                self.tableView.reloadSections(IndexSet(integer: TableSection.cast.rawValue), with: .fade)
             }
         }
     }
@@ -153,7 +153,7 @@ extension TVDetailViewController: UITableViewDelegate, UITableViewDataSource {
         }
     }
     
-    func flipOverviewSection(isOverviewSectionTapped: Bool, indexPath: IndexPath) {
+    private func flipOverviewSection(isOverviewSectionTapped: Bool, indexPath: IndexPath) {
         
         switch isOverviewSectionTapped {
         case false:

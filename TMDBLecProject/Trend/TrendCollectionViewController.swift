@@ -25,7 +25,7 @@ struct TrendData {
     
 }
 
-class TrendCollectionViewController: UIViewController {
+final class TrendCollectionViewController: OrientationPortraitLockedViewController {
     
     @IBOutlet weak var trendCollectionView: UICollectionView!
     
@@ -47,7 +47,7 @@ class TrendCollectionViewController: UIViewController {
         setUI()
         fetchData(startPage: startPage)
     }
-    
+        
     func setUI() {
         trendCollectionView.backgroundColor = .yellow.withAlphaComponent(0)
         setNav()
@@ -117,7 +117,7 @@ extension TrendCollectionViewController: UICollectionViewDelegate, UICollectionV
         let spacing: CGFloat = 16
         let width = UIScreen.main.bounds.width
         
-        layout.minimumLineSpacing = 100
+        layout.minimumLineSpacing = 60
         layout.minimumInteritemSpacing = spacing
         layout.itemSize = CGSize(width: width, height: width * 1.15)
         layout.sectionInset = UIEdgeInsets(top: 50, left: 0, bottom: spacing, right: 0)

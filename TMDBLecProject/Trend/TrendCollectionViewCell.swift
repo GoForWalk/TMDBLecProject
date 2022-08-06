@@ -31,11 +31,16 @@ class TrendCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var seperatorView: UIView!
     
     var trendData: TrendData?
-    
+        
     @IBAction func webViewButtonTapped(_ sender: UIButton) {
         
+        guard let vc = UIStoryboard(name: StoryBoradIDs.tvIntroWebViewController, bundle: nil).instantiateViewController(identifier: TVIntoWebViewController.identifier) as? TVIntoWebViewController else { return }
         
-        
+        vc.trendData = self.trendData
+        vc.modalPresentationStyle = .fullScreen
+        vc.modalTransitionStyle = .crossDissolve
+
+        window?.rootViewController?.present(vc, animated: true)
     }
     
 }

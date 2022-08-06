@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="20037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Into Web View Controller-->
+        <scene sceneID="s0d-6b-0kx">
+            <objects>
+                <viewController storyboardIdentifier="TVIntoWebViewController" id="Y6W-OH-hqX" customClass="TVIntoWebViewController" customModule="TMDBLecProject" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="5EZ-qb-Rvc">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <wkWebView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="JsZ-VB-OUb">
+                                <rect key="frame" x="0.0" y="44" width="414" height="818"/>
+                                <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <wkWebViewConfiguration key="configuration">
+                                    <audiovisualMediaTypes key="mediaTypesRequiringUserActionForPlayback" none="YES"/>
+                                    <wkPreferences key="preferences"/>
+                                </wkWebViewConfiguration>
+                            </wkWebView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fTb-Qd-Mmk">
+                                <rect key="frame" x="353" y="64" width="41" height="41"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="fTb-Qd-Mmk" secondAttribute="height" id="KF9-XC-tem"/>
+                                </constraints>
+                                <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                <state key="normal" image="xmark" catalog="system">
+                                    <preferredSymbolConfiguration key="preferredSymbolConfiguration" configurationType="pointSize" pointSize="24"/>
+                                </state>
+                                <connections>
+                                    <action selector="xmarkButtonTapped:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="F5H-Jo-87d"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="vDu-zF-Fre"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="fTb-Qd-Mmk" secondAttribute="trailing" constant="20" id="EfI-QC-LEi"/>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="bottom" secondItem="JsZ-VB-OUb" secondAttribute="bottom" id="IIg-ab-ROH"/>
+                            <constraint firstItem="JsZ-VB-OUb" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" id="QQv-Sh-HvK"/>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="JsZ-VB-OUb" secondAttribute="trailing" id="QUW-rP-hE8"/>
+                            <constraint firstItem="JsZ-VB-OUb" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" id="fph-DG-ZEc"/>
+                            <constraint firstItem="fTb-Qd-Mmk" firstAttribute="height" secondItem="JsZ-VB-OUb" secondAttribute="height" multiplier="0.05" id="jui-Nr-qvt"/>
+                            <constraint firstItem="fTb-Qd-Mmk" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" constant="20" id="m3M-cT-bAG"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="webView" destination="JsZ-VB-OUb" id="LUK-tA-KMa"/>
+                        <outlet property="xmarkButton" destination="fTb-Qd-Mmk" id="XzO-gR-pxU"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="139" y="127"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="xmark" catalog="system" width="128" height="113"/>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>

@@ -10,7 +10,7 @@ import Foundation
 import Alamofire
 import SwiftyJSON
 
-class TMDBAPIManager: APIProtocol {
+class TMDBAPIManager {
     
     static let shared = TMDBAPIManager()
     
@@ -19,10 +19,10 @@ class TMDBAPIManager: APIProtocol {
     let genreDB = GenreDB.shared
 
     func fetchTrendAPI(startPage: Int, completionHandler: @escaping (Int, [TrendData]) -> Void) {
+        print(#function, "start")
         
-        let urlString = "\(EndPoint.trendURL)?api_key=\(APIKey.TMDB_KEY)"
-        
-        let params: Parameters = ["api_key":"\(APIKey.TMDB_KEY)", "page": startPage]
+        let urlString = "\(EndPoint.trendURL)"
+        let params: Parameters = [APIKey.TMDB_KEY_PARAM: APIKey.TMDB_KEY, APIKey.TMDB_PAGE_PARAM: startPage]
         
         let formatter = DateFormatter()
         
@@ -31,7 +31,7 @@ class TMDBAPIManager: APIProtocol {
             switch response.result {
             case .success(let result):
                 let json = JSON(result)
-                print(json)
+//                print(json)
                 
                 let totalCell = json["total_results"].intValue // Int
                 
@@ -53,7 +53,7 @@ class TMDBAPIManager: APIProtocol {
                     
                     return TrendData(date: formatter.string(from: date!), genres: genres, title: name, imageURLString: imageURL, rate: "\(round(rate * 100) / 100.0)", description: description, tvID: tvid, wildImageURLString: wildImageURL)
                 }
-                
+                print(#function, "done")
                 completionHandler(totalCell, resultArray)
             case .failure(let error):
                 print("error: \(error)")
@@ -63,10 +63,10 @@ class TMDBAPIManager: APIProtocol {
     }//: fetchTrendAPI
     
     func fetchCastAPI(trendData: TrendData?, completionHandler: @escaping ([ActorInfo]) -> Void) {
+        print(#function, "start")
         
         let url = EndPoint.creditURL(tvID: trendData!.tvID)
-        
-        let quaryString: Parameters = ["api_key": APIKey.TMDB_KEY]
+        let quaryString: Parameters = [APIKey.TMDB_KEY_PARAM: APIKey.TMDB_KEY]
         
         AF.request(url, method: .get, parameters: quaryString).validate().responseData(queue: .global(qos: .default)) { response in
             
@@ -83,7 +83,7 @@ class TMDBAPIManager: APIProtocol {
 
                     return ActorInfo(actorName: actorName, actorImageURLString: actorImageURLString, characterName: characterName)
                 }
-                
+                print(#function, "done")
                 completionHandler(resultArray)
                 
             case .failure(let error):
@@ -94,16 +94,18 @@ class TMDBAPIManager: APIProtocol {
     }//: fetchCastAPI
     
     func fetchGenreAPI() {
-        print("start Genre")
-        let urlString = "\(EndPoint.gerneURL)?api_key=\(APIKey.TMDB_KEY)"
+        print(#function, "start")
         
-        AF.request(urlString, method: .get).validate().responseData(queue: .global(qos: .background)) { response in
+        let urlString = EndPoint.gerneURL
+        let params: Parameters = [APIKey.TMDB_KEY_PARAM: APIKey.TMDB_KEY]
+        
+        AF.request(urlString, method: .get, parameters: params).validate().responseData(queue: .global(qos: .background)) { response in
             
             switch response.result {
             case .success(let result):
                 let json = JSON(result)
                 
-                print(json)
+//                print(json)
                 let genres = json["genres"]
                 
                 genres.forEach { (_ , json) in
@@ -114,13 +116,42 @@ class TMDBAPIManager: APIProtocol {
                 }
                                 
                 self.genreDB.setGenreToUserDefaults()
-                print("fetch Done: genreData")
+                print(#function, "done")
                 
             case .failure(let error):
                 print(error)
             }
         }
 
-    }
+    }//: fetchGenreAPI
+    
+    func fetchTVIntoAPI(tvID: Int, completionHandler: @escaping (String, String) -> Void) {
+        print(#function, "start")
+
+        let urlString = EndPoint.videoURL(tvID: tvID)
+        let params: Parameters = [APIKey.TMDB_KEY_PARAM: APIKey.TMDB_KEY]
+        
+        AF.request(urlString, method: .get, parameters: params).validate().responseData(queue: .global(qos: .userInteractive)) { response in
+            
+            switch response.result {
+            case .success(let result):
+                let json = JSON(result)
+                print(json)
+                
+                let into = json["results"].arrayValue
+                let firstInto = into[0]
+                
+                let introSite = firstInto["site"].stringValue
+                let introKey = firstInto["key"].stringValue
+                
+                completionHandler(introSite, introKey)
+                
+                print(#function, "done")
+            case .failure(let error):
+                print(#function, "error:", error)
+            }
+        }
+        
+    }//: fetchTVIntoAPI
     
 }//: TMDBAPIManager
