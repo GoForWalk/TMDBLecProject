@@ -51,7 +51,9 @@ extension TrendCollectionViewCell {
         
         self.trendData = trendData
         
-        dateLabel.text = " \(trendData.date) "
+        guard let date = trendData.date else { return }
+        
+        dateLabel.text = date
         trendGenreLabel.text = trendData.genres.map {    
             return "#\(genreDB.searchGenreFromData(key: $0)!)"
         }.formatted(.list(type: .and, width: .narrow))

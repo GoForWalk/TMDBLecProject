@@ -41,7 +41,7 @@ class TMDBAPIManager {
                     
                     formatter.dateFormat = "yyyy-MM-dd"
                     
-                    let date = formatter.date(from: json["first_air_date"].stringValue)
+                    let date = formatter.date(from: json["first_air_date"].string ?? "1900-01-01")
                     let rate = json["vote_average"].doubleValue
                     let imageURL = json["poster_path"].stringValue
                     let description = json["overview"].stringValue
@@ -51,7 +51,9 @@ class TMDBAPIManager {
                     
                     formatter.dateFormat = "dd/MM/yyyy"
                     
-                    return TrendData(date: formatter.string(from: date!), genres: genres, title: name, imageURLString: imageURL, rate: "\(round(rate * 100) / 100.0)", description: description, tvID: tvid, wildImageURLString: wildImageURL)
+                    let dateString = date != nil ? formatter.string(from: date!) : "날짜 없음"
+                    
+                    return TrendData(date: dateString, genres: genres, title: name, imageURLString: imageURL, rate: "\(round(rate * 100) / 100.0)", description: description, tvID: tvid, wildImageURLString: wildImageURL)
                 }
                 print(#function, "done")
                 completionHandler(totalCell, resultArray)
@@ -136,7 +138,7 @@ class TMDBAPIManager {
             switch response.result {
             case .success(let result):
                 let json = JSON(result)
-                print(json)
+//                print(json)
                 
                 let into = json["results"].arrayValue
                 let firstInto = into[0]

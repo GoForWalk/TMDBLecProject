@@ -8,7 +8,7 @@
 import UIKit
 import WebKit
 
-class TVIntoWebViewController: UIViewController {
+final class TVIntoWebViewController: UIViewController {
 
     let tmdbAPIManager = TMDBAPIManager.shared
     
