@@ -138,13 +138,13 @@ extension TrendCollectionViewController: UISearchBarDelegate {
         if searchDataArray.isEmpty || textNum > searchText.count {
             textNum = searchText.count
             searchDataArray = dataArray.filter {
-                return $0.title.trimmingCharacters(in: .whitespaces).contains(searchText)
+                return $0.title.trimmingCharacters(in: .whitespaces).lowercased().contains(searchText.lowercased())
             }
     
         } else {
             textNum += 1
             searchDataArray = searchDataArray.filter {
-                return $0.title.trimmingCharacters(in: .whitespaces).contains(searchText)
+                return $0.title.trimmingCharacters(in: .whitespaces).lowercased().contains(searchText.lowercased())
             }
         }
         
