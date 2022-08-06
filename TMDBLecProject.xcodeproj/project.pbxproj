@@ -23,6 +23,7 @@
 		CF8FE174289A6EA4005C8371 /* TrendDB.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF8FE173289A6EA4005C8371 /* TrendDB.swift */; };
 		CFC0CA9B289CF08300365340 /* TMDBAPIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFC0CA9A289CF08300365340 /* TMDBAPIManager.swift */; };
 		CFC0CA9D289CF0B200365340 /* APIProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFC0CA9C289CF0B200365340 /* APIProtocol.swift */; };
+		CFC0CA9F289DFE1700365340 /* WebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFC0CA9E289DFE1700365340 /* WebViewController.swift */; };
 		CFEF30E92899F6C2008511B9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFEF30E82899F6C2008511B9 /* AppDelegate.swift */; };
 		CFEF30EB2899F6C2008511B9 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFEF30EA2899F6C2008511B9 /* SceneDelegate.swift */; };
 		CFEF30F02899F6C2008511B9 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CFEF30EE2899F6C2008511B9 /* Main.storyboard */; };
@@ -46,6 +47,7 @@
 		CF8FE173289A6EA4005C8371 /* TrendDB.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrendDB.swift; sourceTree = "<group>"; };
 		CFC0CA9A289CF08300365340 /* TMDBAPIManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TMDBAPIManager.swift; sourceTree = "<group>"; };
 		CFC0CA9C289CF0B200365340 /* APIProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIProtocol.swift; sourceTree = "<group>"; };
+		CFC0CA9E289DFE1700365340 /* WebViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebViewController.swift; sourceTree = "<group>"; };
 		CFEF30E52899F6C2008511B9 /* TMDBLecProject.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TMDBLecProject.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CFEF30E82899F6C2008511B9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CFEF30EA2899F6C2008511B9 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -150,6 +152,7 @@
 				CFEF30F12899F6C4008511B9 /* Assets.xcassets */,
 				CFEF30F32899F6C4008511B9 /* LaunchScreen.storyboard */,
 				CFEF30F62899F6C4008511B9 /* Info.plist */,
+				CFC0CA9E289DFE1700365340 /* WebViewController.swift */,
 			);
 			path = TMDBLecProject;
 			sourceTree = "<group>";
@@ -267,6 +270,7 @@
 				CFEF31002899F88D008511B9 /* APIKey.swift in Sources */,
 				CFEF30EB2899F6C2008511B9 /* SceneDelegate.swift in Sources */,
 				CF4239FB289B8EC00065CD5E /* WildThumbnail.swift in Sources */,
+				CFC0CA9F289DFE1700365340 /* WebViewController.swift in Sources */,
 				CF4239F3289B8BAD0065CD5E /* TVDetailViewController.swift in Sources */,
 				CF8FE169289A4FE9005C8371 /* ReusableProtocol.swift in Sources */,
 			);

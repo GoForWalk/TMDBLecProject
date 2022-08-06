@@ -12,46 +12,16 @@ import SwiftyJSON
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
-
-    let genreDB = GenreDB.shared
+    
+    let tmdbAPIManager = TMDBAPIManager.shared
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
-        fetchGenre()
+        tmdbAPIManager.fetchGenreAPI()
         return true
     }
     
-    func fetchGenre() {
-        print("start Genre")
-        let urlString = "\(EndPoint.gerneURL)?api_key=\(APIKey.TMDB_KEY)"
-        
-        AF.request(urlString, method: .get).validate().responseJSON { response in
-            
-            switch response.result {
-            case .success(let result):
-                let json = JSON(result)
-                
-                print(json)
-                let genres = json["genres"]
-                
-                genres.forEach { (_ , json) in
-                    let key = json["id"].intValue
-                    let value = json["name"].stringValue
-                    
-                    self.genreDB.appendGenre(key: key, value: value)
-                }
-                
-                self.genreDB.setGenreToUserDefaults()
-                print("fetch Done: genreData")
-                
-            case .failure(let error):
-                print(error)
-            }
-        }
-    }
-
     // MARK: UISceneSession Lifecycle
-
     func application(_ application: UIApplication, configurationForConnecting connectingSceneSession: UISceneSession, options: UIScene.ConnectionOptions) -> UISceneConfiguration {
         // Called when a new scene session is being created.
         // Use this method to select a configuration to create the new scene with.

@@ -15,6 +15,8 @@ class TMDBAPIManager: APIProtocol {
     static let shared = TMDBAPIManager()
     
     private init () { }
+    
+    let genreDB = GenreDB.shared
 
     func fetchTrendAPI(startPage: Int, completionHandler: @escaping (Int, [TrendData]) -> Void) {
         
@@ -91,7 +93,34 @@ class TMDBAPIManager: APIProtocol {
         
     }//: fetchCastAPI
     
-    // TODO: GenreData
-    
+    func fetchGenreAPI() {
+        print("start Genre")
+        let urlString = "\(EndPoint.gerneURL)?api_key=\(APIKey.TMDB_KEY)"
+        
+        AF.request(urlString, method: .get).validate().responseData(queue: .global(qos: .background)) { response in
+            
+            switch response.result {
+            case .success(let result):
+                let json = JSON(result)
+                
+                print(json)
+                let genres = json["genres"]
+                
+                genres.forEach { (_ , json) in
+                    let key = json["id"].intValue
+                    let value = json["name"].stringValue
+
+                    self.genreDB.appendGenre(key: key, value: value)
+                }
+                                
+                self.genreDB.setGenreToUserDefaults()
+                print("fetch Done: genreData")
+                
+            case .failure(let error):
+                print(error)
+            }
+        }
+
+    }
     
 }//: TMDBAPIManager

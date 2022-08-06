@@ -27,6 +27,7 @@ class TVDetailViewController: UIViewController {
     var trendData: TrendData?
     let tmdbAPIManager = TMDBAPIManager.shared
     var isOverviewSectionTapped: Bool = false
+    var isFirstLoaded = true
     
     var actorArray: [ActorInfo] = []
     
@@ -43,6 +44,7 @@ class TVDetailViewController: UIViewController {
         setUI()
         adoptProtocol()
         fetchTVData()
+        
     }
 }
 
@@ -67,13 +69,11 @@ extension TVDetailViewController {
         titleLabel.text = trendData!.title
         titleLabel.font = .systemFont(ofSize: 30, weight: .heavy)
         titleLabel.textColor = .white
-        setImage()
-    }
-    
-    func setImage() {
+
         opacityView.backgroundColor = .lightGray.withAlphaComponent(0.3)
+
     }
-    
+        
     func fetchTVData() {
         tmdbAPIManager.fetchCastAPI(trendData: trendData) { actorInfo in
             self.actorArray.append(contentsOf: actorInfo)
@@ -122,8 +122,11 @@ extension TVDetailViewController: UITableViewDelegate, UITableViewDataSource {
             guard let cell = tableView.dequeueReusableCell(withIdentifier: OverviewTableViewCell.identifier, for: indexPath) as? OverviewTableViewCell else { return UITableViewCell() }
             
             cell.setData(str: trendData!.description)
-            flipOverviewSection(isOverviewSectionTapped: isOverviewSectionTapped, indexPath: indexPath)
             
+            if isFirstLoaded {
+                isFirstLoaded = false
+                flipOverviewSection(isOverviewSectionTapped: isOverviewSectionTapped, indexPath: indexPath)
+            }
             return cell
             
         case TableSection.cast.rawValue:
@@ -140,42 +143,38 @@ extension TVDetailViewController: UITableViewDelegate, UITableViewDataSource {
         
     }
     
-    //automaticdemension
+    // automaticdemension
     // layout
     // numberOfLines
-
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
             
         if indexPath.section == TableSection.overview.rawValue {
-            
             flipOverviewSection(isOverviewSectionTapped: isOverviewSectionTapped, indexPath: indexPath)
         }
-        
     }
     
     func flipOverviewSection(isOverviewSectionTapped: Bool, indexPath: IndexPath) {
         
         switch isOverviewSectionTapped {
-        case true:
-            print("true")
+        case false:
+            print("false")
             tableView.rowHeight = 120
             
             guard let cell = tableView.dequeueReusableCell(withIdentifier: OverviewTableViewCell.identifier, for: indexPath) as? OverviewTableViewCell else { return }
-
             
             cell.overviewLabel.numberOfLines = 2
             tableView.reloadRows(at: [IndexPath(row: 0, section: 0)], with: .fade)
-            self.isOverviewSectionTapped = false
+            self.isOverviewSectionTapped = true
         
-        case false:
-            print("false")
+        case true:
+            print("true")
             tableView.rowHeight = UITableView.automaticDimension
 
             guard let cell = tableView.dequeueReusableCell(withIdentifier: OverviewTableViewCell.identifier, for: indexPath) as? OverviewTableViewCell else { return }
 
             cell.overviewLabel.numberOfLines = 0
             tableView.reloadRows(at: [IndexPath(row: 0, section: 0)], with: .fade)
-            self.isOverviewSectionTapped = true
+            self.isOverviewSectionTapped = false
         }
         
     }

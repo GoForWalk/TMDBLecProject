@@ -18,8 +18,8 @@ class CastingTableViewCell: UITableViewCell {
     
     func configueCell() {
         
-        actorImageView.layer.cornerRadius = 8
         actorImageView.clipsToBounds = true
+        actorImageView.layer.cornerRadius = 8
         
         actorNameLabel.font = .systemFont(ofSize: 20, weight: .bold)
         

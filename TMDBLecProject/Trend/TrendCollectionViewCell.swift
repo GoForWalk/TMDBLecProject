@@ -30,7 +30,21 @@ class TrendCollectionViewCell: UICollectionViewCell {
 
     @IBOutlet weak var seperatorView: UIView!
     
+    var trendData: TrendData?
+    
+    @IBAction func webViewButtonTapped(_ sender: UIButton) {
+        
+        
+        
+    }
+    
+}
+
+extension TrendCollectionViewCell {
+    
     func setData(trendData: TrendData) {
+        
+        self.trendData = trendData
         
         dateLabel.text = " \(trendData.date) "
         trendGenreLabel.text = trendData.genres.map {    
