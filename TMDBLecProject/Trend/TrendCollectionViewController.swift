@@ -32,7 +32,8 @@ final class TrendCollectionViewController: OrientationPortraitLockedViewControll
     
     let genreDB = GenreDB.shared
     let trendAPIManager = TMDBAPIManager.shared
-    
+    let searchController = UISearchController(searchResultsController: nil)
+
     var startPage = 1
     var totalCell = 0
     
@@ -42,9 +43,6 @@ final class TrendCollectionViewController: OrientationPortraitLockedViewControll
     var searchingWord = ""
     var textNum = 0
     
-    var isPaging = false
-
-    let searchController = UISearchController(searchResultsController: nil)
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -54,19 +52,18 @@ final class TrendCollectionViewController: OrientationPortraitLockedViewControll
         trendCollectionView.prefetchDataSource = self
         
         setUI()
-        fetchData(startPage: startPage)
+        fetchData(startPage: startPage, isSearching: isSearching)
     }
-    
-//    override func viewWillAppear(_ animated: Bool) {
-//        super.viewWillAppear(animated)
-//
-//        searchController.searchBar.text = ""
-//    }
-        
+            
     func setUI() {
         trendCollectionView.backgroundColor = .yellow.withAlphaComponent(0)
         setNav()
     }
+    
+}
+
+// MARK: Navigation Set
+extension TrendCollectionViewController {
     
     func setNav() {
         navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "magnifyingglass"), style: .plain, target: self, action: #selector(navRightButtonTapped))
@@ -74,9 +71,7 @@ final class TrendCollectionViewController: OrientationPortraitLockedViewControll
         
         //MARK: UISearchContoller 적용 코드
         searchController.searchBar.delegate = self
-        
         self.navigationItem.searchController = searchController
-        
     }
     
     @objc
@@ -89,40 +84,34 @@ final class TrendCollectionViewController: OrientationPortraitLockedViewControll
         
     }
     
-    func fetchData(startPage: Int) {
-        trendAPIManager.fetchTrendAPI(startPage: startPage) { totalCell, newDataArray in
-            self.totalCell = totalCell
-            self.dataArray.append(contentsOf: newDataArray)
-            
-            DispatchQueue.main.async {
-                self.trendCollectionView.reloadData()
-            }
-        }
-    }
+}
+
+// MARK: FetchingAPI
+extension TrendCollectionViewController {
     
-    func fetchSearchingData(startPage: Int) {
+    func fetchData(startPage: Int, isSearching: Bool) {
         trendAPIManager.fetchTrendAPI(startPage: startPage) { totalCell, newDataArray in
             self.totalCell = totalCell
             self.dataArray.append(contentsOf: newDataArray)
             
-            self.searchDataArray.append(contentsOf: newDataArray.filter{
-                $0.title.trimmingCharacters(in: .whitespaces).contains(self.searchingWord)
-            })
+            if isSearching {
+                self.searchDataArray.append(contentsOf: newDataArray.filter{
+                    $0.title.trimmingCharacters(in: .whitespaces).contains(self.searchingWord)
+                })
+            }
             
             DispatchQueue.main.async {
                 self.trendCollectionView.reloadData()
                 
             }
         }
-
     }
-    
+
 }
 
-// MARK: UISearchBarDelegate
+// MARK: UISearchBarDelegate: 검색기능
 extension TrendCollectionViewController: UISearchBarDelegate {
     
-    // TODO: 검색 기능 추가
     func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
         print(#function)
         isSearching = true
@@ -150,20 +139,15 @@ extension TrendCollectionViewController: UISearchBarDelegate {
         
         if searchDataArray.count < 5, dataArray.count <= 100 {
             startPage += 1
-            fetchSearchingData(startPage: startPage)
+            fetchData(startPage: startPage, isSearching: isSearching)
         }
         
         self.trendCollectionView.reloadData()
-        print(
-//            "searchDataArray:", searchDataArray,
-            " searchwork: ", searchingWord, " textNum: ", textNum)
+        print("searchwork: ", searchingWord, " textNum: ", textNum, " arrayCount: ", dataArray.count)
     }
     
     func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {
         print(#function)
-        
-        isSearching = false
-        textNum = 0
     }
     
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
@@ -172,14 +156,13 @@ extension TrendCollectionViewController: UISearchBarDelegate {
         self.trendCollectionView.reloadData()
         self.trendCollectionView.scrollToItem(at: IndexPath(item: 0, section: 0), at: .bottom, animated: true)
     }
-    
 }
 
 // MARK: UICollectionViewDelegate, UICollectionViewDataSource
 extension TrendCollectionViewController: UICollectionViewDelegate, UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        
+    
         switch isSearching {
         case false: return dataArray.count
         case true: return searchDataArray.count
@@ -197,10 +180,8 @@ extension TrendCollectionViewController: UICollectionViewDelegate, UICollectionV
             cell.setData(trendData: dataArray[indexPath.row])
 
         case true:
-            print("searchDataArray.count: ", searchDataArray.count)
-            
-            if searchDataArray.isEmpty { return UICollectionViewCell()}
-            
+            print("searchDataArray.count: ", searchDataArray.count, " dataArray: ", dataArray.count)
+
             cell.setData(trendData: searchDataArray[indexPath.row])
         }
         
@@ -230,11 +211,11 @@ extension TrendCollectionViewController: UICollectionViewDelegate, UICollectionV
         case true: vc.trendData = searchDataArray[indexPath.item]
         }
         
-        
         navigationController?.pushViewController(vc, animated: true)
     }
     
 }
+
 // MARK: UICollectionViewDataSourcePrefetching / Pagenation
 extension TrendCollectionViewController: UICollectionViewDataSourcePrefetching {
     
@@ -243,16 +224,15 @@ extension TrendCollectionViewController: UICollectionViewDataSourcePrefetching {
         
         for indexPath in indexPaths {
             if dataArray.count - 1 == indexPath.item, dataArray.count < totalCell, !isSearching {
-                print(#function, indexPath)
+                print(#function, " isSearching ", indexPath)
                 startPage += 1
-                fetchData(startPage: startPage)
+                fetchData(startPage: startPage, isSearching: isSearching)
             }
             
             if searchDataArray.count - 1 == indexPath.item, dataArray.count < totalCell, isSearching {
-                print(#function, indexPath)
-                
+                print(#function, " isSearching ", indexPath)
                 startPage += 1
-                fetchSearchingData(startPage: startPage)
+                fetchData(startPage: startPage, isSearching: isSearching)
             }
         }
     }

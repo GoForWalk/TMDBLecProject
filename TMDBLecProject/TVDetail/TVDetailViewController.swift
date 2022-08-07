@@ -71,7 +71,6 @@ extension TVDetailViewController {
         titleLabel.textColor = .white
 
         opacityView.backgroundColor = .lightGray.withAlphaComponent(0.3)
-
     }
         
     private func fetchTVData() {

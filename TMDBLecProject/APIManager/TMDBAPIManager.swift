@@ -140,7 +140,12 @@ class TMDBAPIManager {
                 let json = JSON(result)
 //                print(json)
                 
-                let into = json["results"].arrayValue
+                let into = json["results"].array
+                
+                guard let into = into else {
+                    print(#function, "Error: none TVIntoURL")
+                    return }
+                
                 let firstInto = into[0]
                 
                 let introSite = firstInto["site"].stringValue
