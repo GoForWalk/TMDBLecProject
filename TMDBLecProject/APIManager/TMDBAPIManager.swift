@@ -14,19 +14,21 @@ class TMDBAPIManager {
     
     static let shared = TMDBAPIManager()
     
-    private init () { }
+    private init () {}
     
     let genreDB = GenreDB.shared
-
+    let formatter = DateFormatter()
+    
     func fetchTrendAPI(startPage: Int, completionHandler: @escaping (Int, [TrendData]) -> Void) {
         print(#function, "start")
         
         let urlString = "\(EndPoint.trendURL)"
         let params: Parameters = [APIKey.TMDB_KEY_PARAM: APIKey.TMDB_KEY, APIKey.TMDB_PAGE_PARAM: startPage]
         
-        let formatter = DateFormatter()
         
-        AF.request(urlString, method: .get, parameters: params ).validate().responseData(queue: .global(qos: .default)) { response in
+        AF.request(urlString, method: .get, parameters: params ).validate().responseData(queue: .global(qos: .default)) { [weak self] response in
+            
+            guard let self = self else { return }
             
             switch response.result {
             case .success(let result):
@@ -39,9 +41,9 @@ class TMDBAPIManager {
                 let resultArray: [TrendData] = trends.map { json -> TrendData in
                     let name = json["name"].stringValue
                     
-                    formatter.dateFormat = "yyyy-MM-dd"
+                    self.formatter.dateFormat = "yyyy-MM-dd"
                     
-                    let date = formatter.date(from: json["first_air_date"].string ?? "1900-01-01")
+                    let date = self.formatter.date(from: json["first_air_date"].string ?? "1900-01-01")
                     let rate = json["vote_average"].doubleValue
                     let imageURL = json["poster_path"].stringValue
                     let description = json["overview"].stringValue
@@ -49,9 +51,9 @@ class TMDBAPIManager {
                     let tvid = json["id"].intValue
                     let wildImageURL = json["backdrop_path"].stringValue
                     
-                    formatter.dateFormat = "dd/MM/yyyy"
+                    self.formatter.dateFormat = "dd/MM/yyyy"
                     
-                    let dateString = date != nil ? formatter.string(from: date!) : "날짜 없음"
+                    let dateString = date != nil ? self.formatter.string(from: date!) : "날짜 없음"
                     
                     return TrendData(date: dateString, genres: genres, title: name, imageURLString: imageURL, rate: "\(round(rate * 100) / 100.0)", description: description, tvID: tvid, wildImageURLString: wildImageURL)
                 }
@@ -71,7 +73,7 @@ class TMDBAPIManager {
         let quaryString: Parameters = [APIKey.TMDB_KEY_PARAM: APIKey.TMDB_KEY]
         
         AF.request(url, method: .get, parameters: quaryString).validate().responseData(queue: .global(qos: .default)) { response in
-            
+                        
             switch response.result {
             case .success(let result):
                 let json = JSON(result)
@@ -101,7 +103,9 @@ class TMDBAPIManager {
         let urlString = EndPoint.gerneURL
         let params: Parameters = [APIKey.TMDB_KEY_PARAM: APIKey.TMDB_KEY]
         
-        AF.request(urlString, method: .get, parameters: params).validate().responseData(queue: .global(qos: .background)) { response in
+        AF.request(urlString, method: .get, parameters: params).validate().responseData(queue: .global(qos: .background)) { [weak self] response in
+
+            guard let self = self else { return }
             
             switch response.result {
             case .success(let result):
