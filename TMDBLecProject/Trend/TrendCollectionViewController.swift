@@ -90,7 +90,10 @@ extension TrendCollectionViewController {
 extension TrendCollectionViewController {
     
     func fetchData(startPage: Int, isSearching: Bool) {
-        trendAPIManager.fetchTrendAPI(startPage: startPage) { totalCell, newDataArray in
+        trendAPIManager.fetchTrendAPI(startPage: startPage) { [weak self] totalCell, newDataArray in
+            
+            guard let self = self else { return }
+
             self.totalCell = totalCell
             self.dataArray.append(contentsOf: newDataArray)
             
