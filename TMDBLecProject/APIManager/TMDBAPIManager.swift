@@ -22,7 +22,7 @@ class TMDBAPIManager {
     func fetchTrendAPI(startPage: Int, completionHandler: @escaping (Int, [TrendData]) -> Void) {
         print(#function, "start")
         
-        let urlString = "\(EndPoint.trendURL)"
+        let urlString = EndPoint.trendURL
         let params: Parameters = [APIKey.TMDB_KEY_PARAM: APIKey.TMDB_KEY, APIKey.TMDB_PAGE_PARAM: startPage]
         
         

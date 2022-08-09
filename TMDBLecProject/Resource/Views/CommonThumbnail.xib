@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="20037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="CommonThumbnail" customModule="TMDBLecProject" customModuleProvider="target">
+            <connections>
+                <outlet property="thumbnailImageView" destination="4TQ-Ta-Zaj" id="3ES-zs-JFm"/>
+                <outlet property="thumbnailTitleLabel" destination="hpu-C6-lhN" id="Lge-Ea-lA7"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB">
+            <rect key="frame" x="0.0" y="0.0" width="193" height="304"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="4TQ-Ta-Zaj">
+                    <rect key="frame" x="0.0" y="0.0" width="193" height="304"/>
+                </imageView>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hpu-C6-lhN">
+                    <rect key="frame" x="8" y="16" width="177" height="20"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="20" id="ODm-9h-pr3"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+            </subviews>
+            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+            <constraints>
+                <constraint firstAttribute="trailing" secondItem="hpu-C6-lhN" secondAttribute="trailing" constant="8" id="Jzd-fk-AJU"/>
+                <constraint firstItem="4TQ-Ta-Zaj" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="SG3-lu-RnL"/>
+                <constraint firstItem="4TQ-Ta-Zaj" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="Sq8-dI-dGm"/>
+                <constraint firstItem="hpu-C6-lhN" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="16" id="VPE-me-41W"/>
+                <constraint firstItem="hpu-C6-lhN" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="8" id="ZCA-FO-nIa"/>
+                <constraint firstAttribute="bottom" secondItem="4TQ-Ta-Zaj" secondAttribute="bottom" id="pTg-Zg-ZTk"/>
+                <constraint firstAttribute="trailing" secondItem="4TQ-Ta-Zaj" secondAttribute="trailing" id="qMp-PA-U5h"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <point key="canvasLocation" x="111" y="9"/>
+        </view>
+    </objects>
+    <resources>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>

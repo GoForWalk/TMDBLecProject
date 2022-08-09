@@ -5,7 +5,6 @@
 //  Created by sae hun chung on 2022/08/03.
 //
 
-import Foundation
 import UIKit
 
 protocol ReusableProtocol {

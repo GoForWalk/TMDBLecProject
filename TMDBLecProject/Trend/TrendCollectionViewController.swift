@@ -10,7 +10,8 @@ import UIKit
 import Kingfisher
 import Alamofire
 import SwiftyJSON
-import SwiftUI
+import JGProgressHUD
+
 
 struct TrendData {
     
@@ -33,7 +34,8 @@ final class TrendCollectionViewController: OrientationPortraitLockedViewControll
     let genreDB = GenreDB.shared
     let trendAPIManager = TMDBAPIManager.shared
     let searchController = UISearchController(searchResultsController: nil)
-
+    let hud = JGProgressHUD()
+    
     var startPage = 1
     var totalCell = 0
     
@@ -58,6 +60,7 @@ final class TrendCollectionViewController: OrientationPortraitLockedViewControll
     func setUI() {
         trendCollectionView.backgroundColor = .yellow.withAlphaComponent(0)
         setNav()
+        hud.textLabel.text = "Loading"
     }
     
 }
@@ -77,6 +80,12 @@ extension TrendCollectionViewController {
     @objc
     func navRightButtonTapped() {
         
+        guard let vc = UIStoryboard(name: StoryBoradIDs.tvProgramsViewController, bundle: nil).instantiateViewController(withIdentifier: TVProgramsViewController.identifier) as? TVProgramsViewController else { return }
+        
+        vc.modalPresentationStyle = .fullScreen
+        vc.modalTransitionStyle = .crossDissolve
+        
+        self.present(vc, animated: true)
     }
     
     @objc
@@ -94,6 +103,10 @@ extension TrendCollectionViewController {
             
             guard let self = self else { return }
 
+            DispatchQueue.main.async {
+                self.hud.show(in: self.view, animated: true)
+            }
+            
             self.totalCell = totalCell
             self.dataArray.append(contentsOf: newDataArray)
             
@@ -105,7 +118,7 @@ extension TrendCollectionViewController {
             
             DispatchQueue.main.async {
                 self.trendCollectionView.reloadData()
-                
+                self.hud.dismiss(afterDelay: 0.5 ,animated: true)
             }
         }
     }
@@ -140,9 +153,14 @@ extension TrendCollectionViewController: UISearchBarDelegate {
             }
         }
         
-        if searchDataArray.count < 5, dataArray.count <= 100 {
+        
+        if searchDataArray.count < 5, dataArray.count <= 200 {
+            
             startPage += 1
             fetchData(startPage: startPage, isSearching: isSearching)
+            self.trendCollectionView.reloadData()
+            print("searchwork: ", searchingWord, " textNum: ", textNum, " arrayCount: ", dataArray.count)
+            return
         }
         
         self.trendCollectionView.reloadData()

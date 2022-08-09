@@ -71,6 +71,8 @@ extension TVDetailViewController {
         titleLabel.textColor = .white
 
         opacityView.backgroundColor = .lightGray.withAlphaComponent(0.3)
+        
+        tableView.rowHeight = UITableView.automaticDimension
     }
         
     private func fetchTVData() {

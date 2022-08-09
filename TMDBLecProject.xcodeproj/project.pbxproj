@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		CF29FE2E28A110C400CE685F /* JGProgressHUD in Frameworks */ = {isa = PBXBuildFile; productRef = CF29FE2D28A110C400CE685F /* JGProgressHUD */; };
 		CF4239F3289B8BAD0065CD5E /* TVDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF4239F2289B8BAD0065CD5E /* TVDetailViewController.swift */; };
 		CF4239F6289B8C400065CD5E /* CastingTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF4239F4289B8C400065CD5E /* CastingTableViewCell.swift */; };
 		CF4239F7289B8C400065CD5E /* CastingTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CF4239F5289B8C400065CD5E /* CastingTableViewCell.xib */; };
@@ -14,6 +15,12 @@
 		CF4239FB289B8EC00065CD5E /* WildThumbnail.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF4239FA289B8EC00065CD5E /* WildThumbnail.swift */; };
 		CF423A00289BAA350065CD5E /* OverviewTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF4239FE289BAA350065CD5E /* OverviewTableViewCell.swift */; };
 		CF423A01289BAA350065CD5E /* OverviewTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CF4239FF289BAA350065CD5E /* OverviewTableViewCell.xib */; };
+		CF490FE928A2433A00971D83 /* TVPrograms.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CF490FE828A2433A00971D83 /* TVPrograms.storyboard */; };
+		CF490FEB28A2436A00971D83 /* TVProgramsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF490FEA28A2436A00971D83 /* TVProgramsViewController.swift */; };
+		CF490FEE28A2439100971D83 /* TVBannerCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF490FEC28A2439100971D83 /* TVBannerCollectionViewCell.swift */; };
+		CF490FEF28A2439100971D83 /* TVBannerCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CF490FED28A2439100971D83 /* TVBannerCollectionViewCell.xib */; };
+		CF490FF128A243C400971D83 /* CommonThumbnail.xib in Resources */ = {isa = PBXBuildFile; fileRef = CF490FF028A243C400971D83 /* CommonThumbnail.xib */; };
+		CF490FF328A243E100971D83 /* CommonThumbnail.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF490FF228A243E100971D83 /* CommonThumbnail.swift */; };
 		CF8FE164289A4F60005C8371 /* TrendCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF8FE163289A4F60005C8371 /* TrendCollectionViewController.swift */; };
 		CF8FE167289A4F8C005C8371 /* TrendCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF8FE166289A4F8C005C8371 /* TrendCollectionViewCell.swift */; };
 		CF8FE169289A4FE9005C8371 /* ReusableProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF8FE168289A4FE9005C8371 /* ReusableProtocol.swift */; };
@@ -21,6 +28,10 @@
 		CF8FE16F289A6088005C8371 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = CF8FE16E289A6088005C8371 /* Alamofire */; };
 		CF8FE172289A60A5005C8371 /* SwiftyJSON in Frameworks */ = {isa = PBXBuildFile; productRef = CF8FE171289A60A5005C8371 /* SwiftyJSON */; };
 		CF8FE174289A6EA4005C8371 /* TrendDB.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF8FE173289A6EA4005C8371 /* TrendDB.swift */; };
+		CFA7219928A25918003CB655 /* TVProgramsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFA7219728A25918003CB655 /* TVProgramsTableViewCell.swift */; };
+		CFA7219A28A25918003CB655 /* TVProgramsTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CFA7219828A25918003CB655 /* TVProgramsTableViewCell.xib */; };
+		CFA7219F28A265A6003CB655 /* TVProgramsCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFA7219D28A265A6003CB655 /* TVProgramsCollectionViewCell.swift */; };
+		CFA721A028A265A6003CB655 /* TVProgramsCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CFA7219E28A265A6003CB655 /* TVProgramsCollectionViewCell.xib */; };
 		CFC0CA9B289CF08300365340 /* TMDBAPIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFC0CA9A289CF08300365340 /* TMDBAPIManager.swift */; };
 		CFC0CA9D289CF0B200365340 /* OrientationPortraitLockedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFC0CA9C289CF0B200365340 /* OrientationPortraitLockedViewController.swift */; };
 		CFC0CAA1289E039F00365340 /* TVIntoWebView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CFC0CAA0289E039F00365340 /* TVIntoWebView.storyboard */; };
@@ -43,10 +54,20 @@
 		CF4239FA289B8EC00065CD5E /* WildThumbnail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WildThumbnail.swift; sourceTree = "<group>"; };
 		CF4239FE289BAA350065CD5E /* OverviewTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OverviewTableViewCell.swift; sourceTree = "<group>"; };
 		CF4239FF289BAA350065CD5E /* OverviewTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = OverviewTableViewCell.xib; sourceTree = "<group>"; };
+		CF490FE828A2433A00971D83 /* TVPrograms.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = TVPrograms.storyboard; sourceTree = "<group>"; };
+		CF490FEA28A2436A00971D83 /* TVProgramsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TVProgramsViewController.swift; sourceTree = "<group>"; };
+		CF490FEC28A2439100971D83 /* TVBannerCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TVBannerCollectionViewCell.swift; sourceTree = "<group>"; };
+		CF490FED28A2439100971D83 /* TVBannerCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TVBannerCollectionViewCell.xib; sourceTree = "<group>"; };
+		CF490FF028A243C400971D83 /* CommonThumbnail.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CommonThumbnail.xib; sourceTree = "<group>"; };
+		CF490FF228A243E100971D83 /* CommonThumbnail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommonThumbnail.swift; sourceTree = "<group>"; };
 		CF8FE163289A4F60005C8371 /* TrendCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrendCollectionViewController.swift; sourceTree = "<group>"; };
 		CF8FE166289A4F8C005C8371 /* TrendCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrendCollectionViewCell.swift; sourceTree = "<group>"; };
 		CF8FE168289A4FE9005C8371 /* ReusableProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReusableProtocol.swift; sourceTree = "<group>"; };
 		CF8FE173289A6EA4005C8371 /* TrendDB.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrendDB.swift; sourceTree = "<group>"; };
+		CFA7219728A25918003CB655 /* TVProgramsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TVProgramsTableViewCell.swift; sourceTree = "<group>"; };
+		CFA7219828A25918003CB655 /* TVProgramsTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TVProgramsTableViewCell.xib; sourceTree = "<group>"; };
+		CFA7219D28A265A6003CB655 /* TVProgramsCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TVProgramsCollectionViewCell.swift; sourceTree = "<group>"; };
+		CFA7219E28A265A6003CB655 /* TVProgramsCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TVProgramsCollectionViewCell.xib; sourceTree = "<group>"; };
 		CFC0CA9A289CF08300365340 /* TMDBAPIManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TMDBAPIManager.swift; sourceTree = "<group>"; };
 		CFC0CA9C289CF0B200365340 /* OrientationPortraitLockedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrientationPortraitLockedViewController.swift; sourceTree = "<group>"; };
 		CFC0CAA0289E039F00365340 /* TVIntoWebView.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = TVIntoWebView.storyboard; sourceTree = "<group>"; };
@@ -68,6 +89,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CF29FE2E28A110C400CE685F /* JGProgressHUD in Frameworks */,
 				CF8FE172289A60A5005C8371 /* SwiftyJSON in Frameworks */,
 				CF8FE16C289A6071005C8371 /* Kingfisher in Frameworks */,
 				CF8FE16F289A6088005C8371 /* Alamofire in Frameworks */,
@@ -87,6 +109,28 @@
 				CF4239F5289B8C400065CD5E /* CastingTableViewCell.xib */,
 			);
 			path = TVDetail;
+			sourceTree = "<group>";
+		};
+		CF490FE728A2430A00971D83 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				CF4239F8289B8D6D0065CD5E /* WildThumbnail.xib */,
+				CF4239FA289B8EC00065CD5E /* WildThumbnail.swift */,
+				CF490FF028A243C400971D83 /* CommonThumbnail.xib */,
+				CF490FF228A243E100971D83 /* CommonThumbnail.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		CF490FF428A2459E00971D83 /* TVPrograms */ = {
+			isa = PBXGroup;
+			children = (
+				CF490FE828A2433A00971D83 /* TVPrograms.storyboard */,
+				CF490FEA28A2436A00971D83 /* TVProgramsViewController.swift */,
+				CFA721A128A266AC003CB655 /* TVProgramMain */,
+				CFA721A228A266C1003CB655 /* TVBanner */,
+			);
+			path = TVPrograms;
 			sourceTree = "<group>";
 		};
 		CF8FE165289A4F6B005C8371 /* Trend */ = {
@@ -113,6 +157,26 @@
 				CFC0CA9C289CF0B200365340 /* OrientationPortraitLockedViewController.swift */,
 			);
 			path = Protocol;
+			sourceTree = "<group>";
+		};
+		CFA721A128A266AC003CB655 /* TVProgramMain */ = {
+			isa = PBXGroup;
+			children = (
+				CFA7219D28A265A6003CB655 /* TVProgramsCollectionViewCell.swift */,
+				CFA7219E28A265A6003CB655 /* TVProgramsCollectionViewCell.xib */,
+				CFA7219728A25918003CB655 /* TVProgramsTableViewCell.swift */,
+				CFA7219828A25918003CB655 /* TVProgramsTableViewCell.xib */,
+			);
+			path = TVProgramMain;
+			sourceTree = "<group>";
+		};
+		CFA721A228A266C1003CB655 /* TVBanner */ = {
+			isa = PBXGroup;
+			children = (
+				CF490FEC28A2439100971D83 /* TVBannerCollectionViewCell.swift */,
+				CF490FED28A2439100971D83 /* TVBannerCollectionViewCell.xib */,
+			);
+			path = TVBanner;
 			sourceTree = "<group>";
 		};
 		CFC0CA99289CF06600365340 /* APIManager */ = {
@@ -152,6 +216,7 @@
 		CFEF30E72899F6C2008511B9 /* TMDBLecProject */ = {
 			isa = PBXGroup;
 			children = (
+				CFEF30FE2899F856008511B9 /* APIKey */,
 				CFC0CA99289CF06600365340 /* APIManager */,
 				CF8FE175289A6EAB005C8371 /* DataBase */,
 				CF8FE176289A7163005C8371 /* Protocol */,
@@ -159,7 +224,7 @@
 				CF8FE165289A4F6B005C8371 /* Trend */,
 				CF4239F1289B8B560065CD5E /* TVDetail */,
 				CFC0CAA4289E1CF800365340 /* WebView */,
-				CFEF30FE2899F856008511B9 /* APIKey */,
+				CF490FF428A2459E00971D83 /* TVPrograms */,
 				CFEF30E82899F6C2008511B9 /* AppDelegate.swift */,
 				CFEF30EA2899F6C2008511B9 /* SceneDelegate.swift */,
 				CFEF30EE2899F6C2008511B9 /* Main.storyboard */,
@@ -181,8 +246,7 @@
 		CFEF31032899FAD3008511B9 /* Resource */ = {
 			isa = PBXGroup;
 			children = (
-				CF4239F8289B8D6D0065CD5E /* WildThumbnail.xib */,
-				CF4239FA289B8EC00065CD5E /* WildThumbnail.swift */,
+				CF490FE728A2430A00971D83 /* Views */,
 				CFC0CAA5289E209E00365340 /* ResourceKey.swift */,
 			);
 			path = Resource;
@@ -208,6 +272,7 @@
 				CF8FE16B289A6071005C8371 /* Kingfisher */,
 				CF8FE16E289A6088005C8371 /* Alamofire */,
 				CF8FE171289A60A5005C8371 /* SwiftyJSON */,
+				CF29FE2D28A110C400CE685F /* JGProgressHUD */,
 			);
 			productName = TMDBLecProject;
 			productReference = CFEF30E52899F6C2008511B9 /* TMDBLecProject.app */;
@@ -241,6 +306,7 @@
 				CF8FE16A289A6071005C8371 /* XCRemoteSwiftPackageReference "Kingfisher" */,
 				CF8FE16D289A6088005C8371 /* XCRemoteSwiftPackageReference "Alamofire" */,
 				CF8FE170289A60A5005C8371 /* XCRemoteSwiftPackageReference "SwiftyJSON" */,
+				CF29FE2C28A110C400CE685F /* XCRemoteSwiftPackageReference "JGProgressHUD" */,
 			);
 			productRefGroup = CFEF30E62899F6C2008511B9 /* Products */;
 			projectDirPath = "";
@@ -256,13 +322,18 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CFA7219A28A25918003CB655 /* TVProgramsTableViewCell.xib in Resources */,
 				CFEF30FD2899F7D2008511B9 /* .gitignore in Resources */,
 				CFEF30F52899F6C4008511B9 /* LaunchScreen.storyboard in Resources */,
 				CFEF30F22899F6C4008511B9 /* Assets.xcassets in Resources */,
+				CFA721A028A265A6003CB655 /* TVProgramsCollectionViewCell.xib in Resources */,
+				CF490FE928A2433A00971D83 /* TVPrograms.storyboard in Resources */,
 				CFEF30F02899F6C2008511B9 /* Main.storyboard in Resources */,
 				CFC0CAA1289E039F00365340 /* TVIntoWebView.storyboard in Resources */,
 				CF423A01289BAA350065CD5E /* OverviewTableViewCell.xib in Resources */,
 				CF4239F9289B8D6D0065CD5E /* WildThumbnail.xib in Resources */,
+				CF490FEF28A2439100971D83 /* TVBannerCollectionViewCell.xib in Resources */,
+				CF490FF128A243C400971D83 /* CommonThumbnail.xib in Resources */,
 				CF4239F7289B8C400065CD5E /* CastingTableViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -274,19 +345,24 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CF490FEE28A2439100971D83 /* TVBannerCollectionViewCell.swift in Sources */,
 				CF423A00289BAA350065CD5E /* OverviewTableViewCell.swift in Sources */,
 				CFC0CAA6289E209E00365340 /* ResourceKey.swift in Sources */,
 				CFEF30E92899F6C2008511B9 /* AppDelegate.swift in Sources */,
 				CFC0CA9B289CF08300365340 /* TMDBAPIManager.swift in Sources */,
+				CFA7219F28A265A6003CB655 /* TVProgramsCollectionViewCell.swift in Sources */,
 				CFC0CA9D289CF0B200365340 /* OrientationPortraitLockedViewController.swift in Sources */,
 				CF4239F6289B8C400065CD5E /* CastingTableViewCell.swift in Sources */,
 				CFC0CAA8289E221000365340 /* TVIntoWebViewController.swift in Sources */,
+				CFA7219928A25918003CB655 /* TVProgramsTableViewCell.swift in Sources */,
 				CF8FE164289A4F60005C8371 /* TrendCollectionViewController.swift in Sources */,
+				CF490FF328A243E100971D83 /* CommonThumbnail.swift in Sources */,
 				CF8FE167289A4F8C005C8371 /* TrendCollectionViewCell.swift in Sources */,
 				CF8FE174289A6EA4005C8371 /* TrendDB.swift in Sources */,
 				CFEF31002899F88D008511B9 /* APIKey.swift in Sources */,
 				CFEF30EB2899F6C2008511B9 /* SceneDelegate.swift in Sources */,
 				CF4239FB289B8EC00065CD5E /* WildThumbnail.swift in Sources */,
+				CF490FEB28A2436A00971D83 /* TVProgramsViewController.swift in Sources */,
 				CF4239F3289B8BAD0065CD5E /* TVDetailViewController.swift in Sources */,
 				CF8FE169289A4FE9005C8371 /* ReusableProtocol.swift in Sources */,
 			);
@@ -508,6 +584,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		CF29FE2C28A110C400CE685F /* XCRemoteSwiftPackageReference "JGProgressHUD" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/JonasGessner/JGProgressHUD.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.0.0;
+			};
+		};
 		CF8FE16A289A6071005C8371 /* XCRemoteSwiftPackageReference "Kingfisher" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/onevcat/Kingfisher";
@@ -535,6 +619,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		CF29FE2D28A110C400CE685F /* JGProgressHUD */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = CF29FE2C28A110C400CE685F /* XCRemoteSwiftPackageReference "JGProgressHUD" */;
+			productName = JGProgressHUD;
+		};
 		CF8FE16B289A6071005C8371 /* Kingfisher */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = CF8FE16A289A6071005C8371 /* XCRemoteSwiftPackageReference "Kingfisher" */;
