@@ -31,5 +31,6 @@ class CommonThumbnail: UIView {
     private func setupUI() {
         thumbnailTitleLabel.textColor = .white
         thumbnailTitleLabel.font = .boldSystemFont(ofSize: 14)
+        thumbnailTitleLabel.text = ""
     }
 }

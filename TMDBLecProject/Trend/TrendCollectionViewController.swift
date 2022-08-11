@@ -82,6 +82,8 @@ extension TrendCollectionViewController {
         
         guard let vc = UIStoryboard(name: StoryBoradIDs.tvProgramsViewController, bundle: nil).instantiateViewController(withIdentifier: TVProgramsViewController.identifier) as? TVProgramsViewController else { return }
         
+        vc.trendDataArray = Array(dataArray.shuffled()[0...7])
+        
         vc.modalPresentationStyle = .fullScreen
         vc.modalTransitionStyle = .crossDissolve
         

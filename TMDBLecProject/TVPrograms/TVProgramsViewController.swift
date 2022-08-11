@@ -9,25 +9,22 @@ import UIKit
 
 class TVProgramsViewController: UIViewController {
 
-    let colors: [UIColor] = [.lightGray, .cyan, .orange, .yellow, .green, .magenta]
+    let tmdbAPIManager = TMDBAPIManager.shared
+    var trendDataArray: [TrendData] = []
     
-    let numberList: [[Int]] = [
-        [Int](100...110),
-        [Int](55...75),
-        [Int](10...25),
-        [Int](0...4),
-        [Int](1000...1026)
-    ]
+    let colors: [UIColor] = [.red, .lightGray, .cyan, .orange, .yellow, .green, .magenta]
+    
+    var recommendArray: [[String]] = []
     
     @IBOutlet weak var tvBannerCollectionView: UICollectionView!
     @IBOutlet weak var tvProgramsTableView: UITableView!
-    
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setUI()
         setBannerColletionView()
         setTVProgramsTableView()
+        fetchRecommendData(data: trendDataArray)
     }
     
     func setUI() {
@@ -77,8 +74,23 @@ extension TVProgramsViewController {
         tvProgramsTableView.backgroundColor = .lightGray
     }
     
-    
-    
+}
+
+// MARK: Fetching Data
+extension TVProgramsViewController {
+
+    func fetchRecommendData(data: [TrendData]) {
+        
+        tmdbAPIManager.getRecommendData(data: data) { result in
+            self.recommendArray = result
+            print(result)
+            
+            DispatchQueue.main.async {
+                self.tvProgramsTableView.reloadData()
+            }
+        }
+        
+    }
 }
 
 // MARK: UICollection Protocols
@@ -86,7 +98,7 @@ extension TVProgramsViewController: UICollectionViewDelegate, UICollectionViewDa
     
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return collectionView == tvBannerCollectionView ? colors.count : numberList[collectionView.tag].count
+        return collectionView == tvBannerCollectionView ? colors.count : recommendArray[collectionView.tag].count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -94,13 +106,22 @@ extension TVProgramsViewController: UICollectionViewDelegate, UICollectionViewDa
         if collectionView == tvBannerCollectionView {
             guard let bannerCell = collectionView.dequeueReusableCell(withReuseIdentifier: TVBannerCollectionViewCell.identifier, for: indexPath) as? TVBannerCollectionViewCell else { return UICollectionViewCell()}
             
-            bannerCell.tvBannerView.opacityView.backgroundColor = colors[indexPath.row].withAlphaComponent(0.3)
+            var tempItem = indexPath.item
+            
+            if indexPath.item == colors.count {
+                tempItem = 0
+            }
+            
+            bannerCell.tvBannerView.opacityView.backgroundColor = colors[tempItem].withAlphaComponent(0.3)
             return bannerCell
         } else {
             
             guard let tvCell = collectionView.dequeueReusableCell(withReuseIdentifier: TVProgramsCollectionViewCell.identifier, for: indexPath) as? TVProgramsCollectionViewCell else { return UICollectionViewCell()}
             
-            tvCell.tvProgramsThumbnailView.thumbnailTitleLabel.text = "\(numberList[collectionView.tag][indexPath.item])"
+            let url = URL(string: "\(EndPoint.imageURL)\(recommendArray[collectionView.tag][indexPath.item])")
+            
+//            tvCell.tvProgramsThumbnailView.thumbnailTitleLabel.text = "\(recommendArray[collectionView.tag][indexPath.item])"
+            tvCell.tvProgramsThumbnailView.thumbnailImageView.kf.setImage(with: url)
             return tvCell
         }
     }
@@ -111,7 +132,7 @@ extension TVProgramsViewController: UICollectionViewDelegate, UICollectionViewDa
 extension TVProgramsViewController: UITableViewDelegate, UITableViewDataSource {
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        return numberList.count
+        return recommendArray.count
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -123,10 +144,12 @@ extension TVProgramsViewController: UITableViewDelegate, UITableViewDataSource {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: TVProgramsTableViewCell.identifier, for: indexPath) as? TVProgramsTableViewCell else { return UITableViewCell() }
         
         cell.tvProgramsCollectionView.tag = indexPath.section
-        cell.genreLabel.text = "\(indexPath.section)"
+        cell.genreLabel.text = trendDataArray[indexPath.section].title
         cell.tvProgramsCollectionView.delegate = self
         cell.tvProgramsCollectionView.dataSource = self
         cell.tvProgramsCollectionView.register(UINib(nibName: TVProgramsCollectionViewCell.identifier, bundle: nil), forCellWithReuseIdentifier: TVProgramsCollectionViewCell.identifier)
+//        print(cell.tvProgramsCollectionView.tag, "====",  cell.tvProgramsCollectionView.description)
+        cell.tvProgramsCollectionView.reloadData()
         
         return cell
     }

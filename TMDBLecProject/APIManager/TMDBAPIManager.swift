@@ -165,4 +165,75 @@ class TMDBAPIManager {
         
     }//: fetchTVIntoAPI
     
+    func fetchTVRecommmendation(tvID: Int, completionHandler: @escaping ([String]) -> Void) {
+        
+        let url = EndPoint.recommendationURL(tvID: tvID)
+        
+        let param: Parameters = [APIKey.TMDB_KEY_PARAM: APIKey.TMDB_KEY]
+        
+        AF.request(url, method: .get, parameters: param).validate().responseData { response in
+            
+            switch response.result {
+            case .success(let result):
+                let json = JSON(result)
+//                print("json: ", json)
+                
+                let resultArr = json["results"].arrayValue.map {
+                    $0["backdrop_path"].stringValue
+                }
+                
+                print(resultArr.description)
+                
+                completionHandler(resultArr)
+                
+            case .failure(let error):
+                print("error: ", error)
+            }
+            
+        }
+        
+    }//: fetchTVRecommmendation
+    
+    func getRecommendData(data: [TrendData], completionHandler: @escaping ([[String]]) -> Void) {
+        
+        var result: [[String]] = []
+        
+        TMDBAPIManager.shared.fetchTVRecommmendation(tvID: data[0].tvID) { value in
+            result.append(value)
+
+            TMDBAPIManager.shared.fetchTVRecommmendation(tvID: data[1].tvID) { value in
+                result.append(value)
+
+                TMDBAPIManager.shared.fetchTVRecommmendation(tvID: data[2].tvID) { value in
+                    result.append(value)
+                   
+                    TMDBAPIManager.shared.fetchTVRecommmendation(tvID: data[3].tvID) { value in
+                        result.append(value)
+                     
+                        TMDBAPIManager.shared.fetchTVRecommmendation(tvID: data[4].tvID) { value in
+                            result.append(value)
+                           
+                            TMDBAPIManager.shared.fetchTVRecommmendation(tvID: data[5].tvID) { value in
+                                result.append(value)
+                                
+                                TMDBAPIManager.shared.fetchTVRecommmendation(tvID: data[6].tvID) { value in
+                                    result.append(value)
+                                    
+                                    TMDBAPIManager.shared.fetchTVRecommmendation(tvID: data[7].tvID) { value in
+                                        result.append(value)
+                                        print(#function, " done")
+                                        completionHandler(result)
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        
+        
+    }
+    
 }//: TMDBAPIManager

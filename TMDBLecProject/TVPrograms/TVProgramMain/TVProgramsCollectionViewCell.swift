@@ -21,4 +21,6 @@ class TVProgramsCollectionViewCell: UICollectionViewCell {
         tvProgramsThumbnailView.thumbnailImageView.backgroundColor = .orange
         self.contentView.backgroundColor = .lightGray
     }
+    
+    
 }

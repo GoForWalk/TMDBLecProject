@@ -32,7 +32,7 @@ class TVProgramsTableViewCell: UITableViewCell {
         layout.scrollDirection = .horizontal
         layout.minimumLineSpacing = 16
         layout.minimumInteritemSpacing = 16
-        layout.itemSize = CGSize(width: 130 * 0.75 , height: 130)
+        layout.itemSize = CGSize(width: 180 * 1.5 , height: 180)
         layout.sectionInset = UIEdgeInsets(top: 0, left: 16, bottom: 0, right: 0)
         
         return layout
