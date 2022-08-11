@@ -7,7 +7,7 @@
 
 import UIKit
 
-class TVProgramsViewController: UIViewController {
+class TVProgramsViewController: OrientationPortraitLockedViewController {
 
     let tmdbAPIManager = TMDBAPIManager.shared
     var trendDataArray: [TrendData] = []
@@ -95,6 +95,7 @@ extension TVProgramsViewController {
 
 // MARK: UICollection Protocols
 extension TVProgramsViewController: UICollectionViewDelegate, UICollectionViewDataSource {
+    
     
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {

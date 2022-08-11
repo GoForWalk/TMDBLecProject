@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		CF13731728A4D6AE00D827DD /* TheaterDB.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF13731628A4D6AE00D827DD /* TheaterDB.swift */; };
 		CF29FE2E28A110C400CE685F /* JGProgressHUD in Frameworks */ = {isa = PBXBuildFile; productRef = CF29FE2D28A110C400CE685F /* JGProgressHUD */; };
 		CF4239F3289B8BAD0065CD5E /* TVDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF4239F2289B8BAD0065CD5E /* TVDetailViewController.swift */; };
 		CF4239F6289B8C400065CD5E /* CastingTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF4239F4289B8C400065CD5E /* CastingTableViewCell.swift */; };
@@ -21,6 +22,8 @@
 		CF490FEF28A2439100971D83 /* TVBannerCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CF490FED28A2439100971D83 /* TVBannerCollectionViewCell.xib */; };
 		CF490FF128A243C400971D83 /* CommonThumbnail.xib in Resources */ = {isa = PBXBuildFile; fileRef = CF490FF028A243C400971D83 /* CommonThumbnail.xib */; };
 		CF490FF328A243E100971D83 /* CommonThumbnail.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF490FF228A243E100971D83 /* CommonThumbnail.swift */; };
+		CF72162328A4D9FE007F058C /* TheaterMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF72162128A4D9FE007F058C /* TheaterMapViewController.swift */; };
+		CF72162428A4D9FE007F058C /* TheaterMapView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CF72162228A4D9FE007F058C /* TheaterMapView.storyboard */; };
 		CF8FE164289A4F60005C8371 /* TrendCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF8FE163289A4F60005C8371 /* TrendCollectionViewController.swift */; };
 		CF8FE167289A4F8C005C8371 /* TrendCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF8FE166289A4F8C005C8371 /* TrendCollectionViewCell.swift */; };
 		CF8FE169289A4FE9005C8371 /* ReusableProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF8FE168289A4FE9005C8371 /* ReusableProtocol.swift */; };
@@ -47,6 +50,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		CF13731628A4D6AE00D827DD /* TheaterDB.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TheaterDB.swift; sourceTree = "<group>"; };
 		CF4239F2289B8BAD0065CD5E /* TVDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TVDetailViewController.swift; sourceTree = "<group>"; };
 		CF4239F4289B8C400065CD5E /* CastingTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CastingTableViewCell.swift; sourceTree = "<group>"; };
 		CF4239F5289B8C400065CD5E /* CastingTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CastingTableViewCell.xib; sourceTree = "<group>"; };
@@ -60,6 +64,8 @@
 		CF490FED28A2439100971D83 /* TVBannerCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TVBannerCollectionViewCell.xib; sourceTree = "<group>"; };
 		CF490FF028A243C400971D83 /* CommonThumbnail.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CommonThumbnail.xib; sourceTree = "<group>"; };
 		CF490FF228A243E100971D83 /* CommonThumbnail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommonThumbnail.swift; sourceTree = "<group>"; };
+		CF72162128A4D9FE007F058C /* TheaterMapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TheaterMapViewController.swift; sourceTree = "<group>"; };
+		CF72162228A4D9FE007F058C /* TheaterMapView.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = TheaterMapView.storyboard; sourceTree = "<group>"; };
 		CF8FE163289A4F60005C8371 /* TrendCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrendCollectionViewController.swift; sourceTree = "<group>"; };
 		CF8FE166289A4F8C005C8371 /* TrendCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrendCollectionViewCell.swift; sourceTree = "<group>"; };
 		CF8FE168289A4FE9005C8371 /* ReusableProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReusableProtocol.swift; sourceTree = "<group>"; };
@@ -99,14 +105,22 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		CF4239F1289B8B560065CD5E /* TVDetail */ = {
+		CF13731528A4D57400D827DD /* TVDetailCells */ = {
 			isa = PBXGroup;
 			children = (
-				CF4239F2289B8BAD0065CD5E /* TVDetailViewController.swift */,
 				CF4239FE289BAA350065CD5E /* OverviewTableViewCell.swift */,
 				CF4239FF289BAA350065CD5E /* OverviewTableViewCell.xib */,
 				CF4239F4289B8C400065CD5E /* CastingTableViewCell.swift */,
 				CF4239F5289B8C400065CD5E /* CastingTableViewCell.xib */,
+			);
+			path = TVDetailCells;
+			sourceTree = "<group>";
+		};
+		CF4239F1289B8B560065CD5E /* TVDetail */ = {
+			isa = PBXGroup;
+			children = (
+				CF4239F2289B8BAD0065CD5E /* TVDetailViewController.swift */,
+				CF13731528A4D57400D827DD /* TVDetailCells */,
 			);
 			path = TVDetail;
 			sourceTree = "<group>";
@@ -146,6 +160,7 @@
 			isa = PBXGroup;
 			children = (
 				CF8FE173289A6EA4005C8371 /* TrendDB.swift */,
+				CF13731628A4D6AE00D827DD /* TheaterDB.swift */,
 			);
 			path = DataBase;
 			sourceTree = "<group>";
@@ -231,6 +246,8 @@
 				CFEF30F12899F6C4008511B9 /* Assets.xcassets */,
 				CFEF30F32899F6C4008511B9 /* LaunchScreen.storyboard */,
 				CFEF30F62899F6C4008511B9 /* Info.plist */,
+				CF72162228A4D9FE007F058C /* TheaterMapView.storyboard */,
+				CF72162128A4D9FE007F058C /* TheaterMapViewController.swift */,
 			);
 			path = TMDBLecProject;
 			sourceTree = "<group>";
@@ -330,6 +347,7 @@
 				CF490FE928A2433A00971D83 /* TVPrograms.storyboard in Resources */,
 				CFEF30F02899F6C2008511B9 /* Main.storyboard in Resources */,
 				CFC0CAA1289E039F00365340 /* TVIntoWebView.storyboard in Resources */,
+				CF72162428A4D9FE007F058C /* TheaterMapView.storyboard in Resources */,
 				CF423A01289BAA350065CD5E /* OverviewTableViewCell.xib in Resources */,
 				CF4239F9289B8D6D0065CD5E /* WildThumbnail.xib in Resources */,
 				CF490FEF28A2439100971D83 /* TVBannerCollectionViewCell.xib in Resources */,
@@ -358,6 +376,7 @@
 				CF8FE164289A4F60005C8371 /* TrendCollectionViewController.swift in Sources */,
 				CF490FF328A243E100971D83 /* CommonThumbnail.swift in Sources */,
 				CF8FE167289A4F8C005C8371 /* TrendCollectionViewCell.swift in Sources */,
+				CF72162328A4D9FE007F058C /* TheaterMapViewController.swift in Sources */,
 				CF8FE174289A6EA4005C8371 /* TrendDB.swift in Sources */,
 				CFEF31002899F88D008511B9 /* APIKey.swift in Sources */,
 				CFEF30EB2899F6C2008511B9 /* SceneDelegate.swift in Sources */,
@@ -365,6 +384,7 @@
 				CF490FEB28A2436A00971D83 /* TVProgramsViewController.swift in Sources */,
 				CF4239F3289B8BAD0065CD5E /* TVDetailViewController.swift in Sources */,
 				CF8FE169289A4FE9005C8371 /* ReusableProtocol.swift in Sources */,
+				CF13731728A4D6AE00D827DD /* TheaterDB.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

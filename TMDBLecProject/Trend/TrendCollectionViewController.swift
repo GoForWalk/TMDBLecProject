@@ -93,6 +93,9 @@ extension TrendCollectionViewController {
     @objc
     func navLeftButtonTapped() {
         
+        guard let vc = UIStoryboard(name: StoryBoradIDs.TheaterMapViewController, bundle: nil).instantiateViewController(withIdentifier: TheaterMapViewController.identifier) as? TheaterMapViewController else { return }
+
+        self.navigationController?.pushViewController(vc, animated: true)
     }
     
 }
