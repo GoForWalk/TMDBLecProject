@@ -7,10 +7,11 @@
 
 import Foundation
 
-enum StoryBoradIDs {
-    
-    static let mainStoryBorad = "Main"
-    static let tvIntroWebViewController = "TVIntoWebView"
-    static let tvProgramsViewController = "TVPrograms"
-    static let TheaterMapViewController = "TheaterMapView"
+enum StoryBoradIDs: String, CaseIterable {
+        
+    case Main
+    case TVIntoWebView
+    case TVPrograms
+    case TheaterMapView
+    case WalkThrough
 }

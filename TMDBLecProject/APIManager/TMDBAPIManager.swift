@@ -10,14 +10,14 @@ import Foundation
 import Alamofire
 import SwiftyJSON
 
-class TMDBAPIManager {
+final class TMDBAPIManager {
     
     static let shared = TMDBAPIManager()
     
     private init () {}
     
-    let genreDB = GenreDB.shared
-    let formatter = DateFormatter()
+    private let genreDB = GenreDB.shared
+    private let formatter = DateFormatter()
     
     func fetchTrendAPI(startPage: Int, completionHandler: @escaping (Int, [TrendData]) -> Void) {
         print(#function, "start")
@@ -231,7 +231,6 @@ class TMDBAPIManager {
                 }
             }
         }
-
         
         
     }

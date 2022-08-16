@@ -80,7 +80,7 @@ extension TrendCollectionViewController {
     @objc
     func navRightButtonTapped() {
         
-        guard let vc = UIStoryboard(name: StoryBoradIDs.tvProgramsViewController, bundle: nil).instantiateViewController(withIdentifier: TVProgramsViewController.identifier) as? TVProgramsViewController else { return }
+        guard let vc = UIStoryboard(name: StoryBoradIDs.TVPrograms.rawValue, bundle: nil).instantiateViewController(withIdentifier: TVProgramsViewController.identifier) as? TVProgramsViewController else { return }
         
         vc.trendDataArray = Array(dataArray.shuffled()[0...7])
         
@@ -93,7 +93,7 @@ extension TrendCollectionViewController {
     @objc
     func navLeftButtonTapped() {
         
-        guard let vc = UIStoryboard(name: StoryBoradIDs.TheaterMapViewController, bundle: nil).instantiateViewController(withIdentifier: TheaterMapViewController.identifier) as? TheaterMapViewController else { return }
+        guard let vc = UIStoryboard(name: StoryBoradIDs.TheaterMapView.rawValue, bundle: nil).instantiateViewController(withIdentifier: TheaterMapViewController.identifier) as? TheaterMapViewController else { return }
 
         self.navigationController?.pushViewController(vc, animated: true)
     }

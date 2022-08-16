@@ -11,12 +11,40 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     var window: UIWindow?
 
+//    func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
+//        // Use this method to optionally configure and attach the UIWindow `window` to the provided UIWindowScene `scene`.
+//        // If using a storyboard, the `window` property will automatically be initialized and attached to the scene.
+//        // This delegate does not imply the connecting scene or session are new (see `application:configurationForConnectingSceneSession` instead).
+//        guard let _ = (scene as? UIWindowScene) else { return }
+//    }
+    
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
-        // Use this method to optionally configure and attach the UIWindow `window` to the provided UIWindowScene `scene`.
-        // If using a storyboard, the `window` property will automatically be initialized and attached to the scene.
-        // This delegate does not imply the connecting scene or session are new (see `application:configurationForConnectingSceneSession` instead).
-        guard let _ = (scene as? UIWindowScene) else { return }
+        
+        guard let scene = (scene as? UIWindowScene) else { return }
+        window = UIWindow(windowScene: scene)
+        
+        let condition = UserDefaults.standard.bool(forKey: UserDefaultsKeys.isFirstLaunched)
+        
+        print(condition)
+        if condition {
+
+            let sb = UIStoryboard(name: StoryBoradIDs.Main.rawValue, bundle: nil)
+            let vc = sb.instantiateViewController(withIdentifier: TrendCollectionViewController.identifier) as! TrendCollectionViewController
+            
+            window?.rootViewController = UINavigationController(rootViewController: vc)
+        
+        } else {
+            
+            let sb = UIStoryboard(name: StoryBoradIDs.WalkThrough.rawValue, bundle: nil)
+            let vc = sb.instantiateViewController(withIdentifier: WalkThroughPageViewController.identifier) as! WalkThroughPageViewController
+            
+            window?.rootViewController = vc
+
+        }
+        // 위 코드를 실행시키는 메서드
+        window?.makeKeyAndVisible()
     }
+
 
     func sceneDidDisconnect(_ scene: UIScene) {
         // Called as the scene is being released by the system.

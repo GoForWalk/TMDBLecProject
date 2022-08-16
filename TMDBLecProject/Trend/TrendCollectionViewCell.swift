@@ -34,7 +34,7 @@ class TrendCollectionViewCell: UICollectionViewCell {
         
     @IBAction func webViewButtonTapped(_ sender: UIButton) {
         
-        guard let vc = UIStoryboard(name: StoryBoradIDs.tvIntroWebViewController, bundle: nil).instantiateViewController(identifier: TVIntoWebViewController.identifier) as? TVIntoWebViewController else { return }
+        guard let vc = UIStoryboard(name: StoryBoradIDs.TVIntoWebView.rawValue, bundle: nil).instantiateViewController(identifier: TVIntoWebViewController.identifier) as? TVIntoWebViewController else { return }
         
         vc.trendData = self.trendData
         vc.modalPresentationStyle = .fullScreen

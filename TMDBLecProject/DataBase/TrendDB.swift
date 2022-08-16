@@ -25,11 +25,11 @@ class GenreDB {
     }
     
     func setGenreToUserDefaults() {
-        UserDefaults.standard.set(tvGenre, forKey: "tvGenre")
+        UserDefaults.standard.set(tvGenre, forKey: UserDefaultsKeys.tvGenre)
     }
     
     func getGenreFromUserDefaults() -> [String : String]{
-        UserDefaults.standard.dictionary(forKey: "tvGenre") as! [String: String]
+        UserDefaults.standard.dictionary(forKey: UserDefaultsKeys.tvGenre) as! [String: String]
     }
     
 }

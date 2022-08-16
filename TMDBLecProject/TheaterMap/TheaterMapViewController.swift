@@ -115,7 +115,7 @@ extension TheaterMapViewController: MKMapViewDelegate {
     
     private func getTheaterAnnotations(theaterType: TheaterType?) -> [MKAnnotation] {
 
-        var theaterData = [Theater]()
+        var theaterData = [TheaterProtocol]()
                 
         if let theaterType = theaterType {
             theaterData = theaterList.mapAnnotations.filter {
